@@ -12,3 +12,10 @@ MemoryCaptures/
 *.sln
 *.user
 
+# Visual Studio workspace files
+.vs/
+
+# Unity log files
+Logs/
+*.log
+
