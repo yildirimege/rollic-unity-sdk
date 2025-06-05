@@ -12,6 +12,7 @@ namespace RollicSDK.Core
         private readonly RollicSDKConfig _config;
 
         private static RollicSDK _instance;
+        private static readonly object _lock = new object();
 
         private RollicSDK(RollicSDKConfig config, IEventTracker eventTracker, ISessionManager sessionManager)
         {
@@ -26,18 +27,29 @@ namespace RollicSDK.Core
         /// <param name="config">Configuration object.</param>
         public static void Initialize(RollicSDKConfig config)
         {
-            if (_instance != null)
+            if (config == null)
             {
-                if (config.EnableDebugLogging)
-                    UnityEngine.Debug.LogWarning("RollicSDK is already initialized.");
+                UnityEngine.Debug.LogError("RollicSDKConfig cannot be null.");
                 return;
             }
 
-            _instance = new RollicSDK(config, new EventTracker(), new SessionManager());
-            _instance._sessionManager.StartSession();
+            lock (_lock)
+            {
+                if (_instance != null)
+                {
+                    if (config.EnableDebugLogging)
+                        UnityEngine.Debug.LogWarning("RollicSDK is already initialized.");
+                    return;
+                }
 
-            if (config.EnableDebugLogging)
-                UnityEngine.Debug.Log("RollicSDK initialized.");
+                _instance = new RollicSDK(config, new EventTracker(), new SessionManager());
+                _instance._sessionManager.StartSession();
+
+                if (config.EnableDebugLogging)
+                    UnityEngine.Debug.Log("RollicSDK initialized.");
+
+                UnityEngine.Application.quitting += () => _instance._sessionManager.EndSession();
+            }
         }
 
         /// <summary>
@@ -49,6 +61,12 @@ namespace RollicSDK.Core
             if (_instance == null)
             {
                 UnityEngine.Debug.LogError("RollicSDK not initialized. Call Initialize() before tracking events.");
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(eventName))
+            {
+                UnityEngine.Debug.LogError("Event name cannot be null or empty.");
                 return;
             }
 
