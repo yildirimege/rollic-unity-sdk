@@ -1,99 +1,128 @@
-﻿using System.Collections.Generic;
+﻿using RollicSDK.Data;
 using RollicSDK.Core.Interfaces;
+using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-/// <summary>
-/// Manages a persistent queue of events, storing and retrieving them using the configured storage strategy.
-/// </summary>
-public class EventQueue
+namespace RollicSDK.Core
 {
-    private const string StorageKey = "rollicsdk_event_queue";
-
-    private readonly IStorageStrategy storage;
-    private readonly Queue<EventData> eventQueue;
-
-    public EventQueue(IStorageStrategy storageStrategy)
-    {
-        storage = storageStrategy;
-        eventQueue = LoadQueueFromStorage();
-    }
-
     /// <summary>
-    /// Adds a new event to the queue and saves it to storage.
+    /// Manages a persistent, thread-safe queue of events.
     /// </summary>
-    public void Enqueue(EventData eventData)
+    public class EventQueue
     {
-        eventQueue.Enqueue(eventData);
-        SaveQueueToStorage();
-    }
+        private const string StorageKey = "rollic_sdk_event_queue";
+        private readonly IStorageStrategy _storage;
+        private readonly Queue<EventData> _eventQueue;
+        private readonly object _queueLock = new object();
+        private readonly bool _debugLogging;
 
-    /// <summary>
-    /// Removes and returns the next event in the queue.
-    /// </summary>
-    public EventData Dequeue()
-    {
-        if (eventQueue.Count == 0) return null;
-
-        var ev = eventQueue.Dequeue();
-        SaveQueueToStorage();
-        return ev;
-    }
-
-    /// <summary>
-    /// Peeks at the next event without removing it.
-    /// </summary>
-    public EventData Peek()
-    {
-        return eventQueue.Count > 0 ? eventQueue.Peek() : null;
-    }
-
-    /// <summary>
-    /// Returns the number of events currently in the queue.
-    /// </summary>
-    public int Count => eventQueue.Count;
-
-    /// <summary>
-    /// Clears the entire queue and storage.
-    /// </summary>
-    public void Clear()
-    {
-        eventQueue.Clear();
-        storage.Delete(StorageKey);
-    }
-
-    private void SaveQueueToStorage()
-    {
-        string json = JsonUtility.ToJson(new SerializableEventQueue(eventQueue));
-        storage.Save(StorageKey, json);
-    }
-
-    private Queue<EventData> LoadQueueFromStorage()
-    {
-        if (!storage.Exists(StorageKey)) return new Queue<EventData>();
-
-        string json = storage.Load(StorageKey);
-        try
+        public int Count
         {
-            var wrapper = JsonUtility.FromJson<SerializableEventQueue>(json);
-            return new Queue<EventData>(wrapper.Events);
+            get
+            {
+                lock (_queueLock)
+                {
+                    return _eventQueue.Count;
+                }
+            }
         }
-        catch (Exception e)
+
+        public EventQueue(IStorageStrategy storageStrategy, bool enableDebugLogging = false)
         {
-            Debug.LogWarning($"[EventQueue] Failed to load queue: {e.Message}");
-            return new Queue<EventData>();
+            _storage = storageStrategy;
+            _debugLogging = enableDebugLogging;
+            _eventQueue = LoadQueueFromStorage();
+            if (_debugLogging) Debug.Log($"[EventQueue] Loaded {_eventQueue.Count} events from previous session.");
         }
-    }
 
-    [Serializable]
-    private class SerializableEventQueue
-    {
-        public List<EventData> Events = new();
-
-        public SerializableEventQueue(Queue<EventData> queue)
+        public void Enqueue(EventData eventData)
         {
-            Events = new List<EventData>(queue);
+            lock (_queueLock)
+            {
+                _eventQueue.Enqueue(eventData);
+                SaveQueueToStorage();
+            }
+        }
+
+        /// <summary>
+        /// Dequeues a batch of events up to the specified batch size.
+        /// </summary>
+        public List<EventData> DequeueBatch(int maxBatchSize)
+        {
+            var batch = new List<EventData>();
+            lock (_queueLock)
+            {
+                int count = Math.Min(maxBatchSize, _eventQueue.Count);
+                for (int i = 0; i < count; i++)
+                {
+                    batch.Add(_eventQueue.Dequeue());
+                }
+
+                if (batch.Count > 0)
+                {
+                    SaveQueueToStorage(); // Update storage after removing items
+                }
+            }
+            return batch;
+        }
+
+        /// <summary>
+        /// Adds a batch of events back to the front of the queue.
+        /// Used when a network request fails and events need to be retried.
+        /// </summary>
+        public void RequeueBatch(List<EventData> batch)
+        {
+            if (batch == null || batch.Count == 0) return;
+
+            lock (_queueLock)
+            {
+                var currentItems = new List<EventData>(_eventQueue);
+                _eventQueue.Clear();
+
+                // Add the failed batch to the front
+                foreach (var item in batch) _eventQueue.Enqueue(item);
+                // Add the rest of the items back
+                foreach (var item in currentItems) _eventQueue.Enqueue(item);
+
+                SaveQueueToStorage();
+                if (_debugLogging) Debug.LogWarning($"[EventQueue] Re-queued {batch.Count} events after network failure.");
+            }
+        }
+
+        // --- Private Save/Load Methods ---
+        private void SaveQueueToStorage()
+        {
+            var serializableQueue = new SerializableEventQueue(_eventQueue);
+            string json = JsonUtility.ToJson(serializableQueue);
+            _storage.Save(StorageKey, json);
+        }
+
+        private Queue<EventData> LoadQueueFromStorage()
+        {
+            if (!_storage.Exists(StorageKey)) return new Queue<EventData>();
+
+            string json = _storage.Load(StorageKey);
+            if (string.IsNullOrEmpty(json)) return new Queue<EventData>();
+
+            try
+            {
+                var wrapper = JsonUtility.FromJson<SerializableEventQueue>(json);
+                return new Queue<EventData>(wrapper.Events ?? new List<EventData>());
+            }
+            catch (Exception e)
+            {
+                Debug.LogError($"[EventQueue] Failed to load and parse event queue. The queue will be cleared to prevent further errors. Reason: {e.Message}");
+                _storage.Delete(StorageKey);
+                return new Queue<EventData>();
+            }
+        }
+
+        [Serializable]
+        private class SerializableEventQueue
+        {
+            public List<EventData> Events;
+            public SerializableEventQueue(Queue<EventData> queue) => Events = new List<EventData>(queue);
         }
     }
 }
-
