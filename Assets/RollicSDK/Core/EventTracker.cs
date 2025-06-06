@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using RollicSDK.Core.Dataclasses;
 using RollicSDK.Core.Interfaces;
+using UnityEngine;
 
 namespace RollicSDK.Core
 {
@@ -10,6 +11,15 @@ namespace RollicSDK.Core
     /// </summary>
     internal class EventTracker : IEventTracker
     {
+        private readonly INetworkManager _networkManager;
+        private readonly RollicSDKConfig _config;
+
+        public EventTracker(INetworkManager networkManager, RollicSDKConfig config = null)
+        {
+            _networkManager = networkManager ?? throw new System.ArgumentNullException(nameof(networkManager));
+            _config = config;
+        }
+
         /// <inheritdoc />
         public void TrackEvent(string eventName, Dictionary<string, object> additionalData = null)
         {
@@ -18,10 +28,13 @@ namespace RollicSDK.Core
                 throw new System.ArgumentException("Event name must not be null or empty", nameof(eventName));
             }
 
-            Event newEvent = new Event(eventName, additionalData);
+            Dataclasses.Event newEvent = new Dataclasses.Event(eventName, additionalData);
 
-            // TODO: Add event to que and persist locally
-            UnityEngine.Debug.Log($"[EventTracker] Tracking event: {newEvent.EventName}");
+            // TODO: Add event to queue and persist locally
+            if (_config != null && _config.EnableDebugLogging)
+            {
+                Debug.Log($"[EventTracker] Tracking event: {newEvent.EventName}");
+            }
         }
     }
 }
