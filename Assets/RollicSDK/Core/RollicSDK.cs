@@ -42,7 +42,15 @@ namespace RollicSDK.Core
                     return;
                 }
 
-                _instance = new RollicSDK(config, new EventTracker(), new SessionManager());
+                // Create network manager instance first
+                var networkManager = new NetworkManager(config);
+
+                // Pass network manager into event tracker constructor
+                var eventTracker = new EventTracker(networkManager, config);
+
+                var sessionManager = new SessionManager();
+
+                _instance = new RollicSDK(config, eventTracker, sessionManager);
                 _instance._sessionManager.StartSession();
 
                 if (config.EnableDebugLogging)
