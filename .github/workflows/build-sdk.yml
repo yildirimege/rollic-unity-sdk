@@ -34,12 +34,13 @@ jobs:
           UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
-          # Set your project's Unity version here
-          unityVersion: 2021.3.16f1
+          unityVersion: 6000.0.45f1
           # The platform doesn't matter for exporting a package, but it's a required field.
           targetPlatform: StandaloneWindows64
           # This is the crucial part: tell Unity to run our C# exporter method
           executeMethod: Sample.Editor.PackageExporter.Export
+      - name: List files in the workspace
+        run: ls -R
 
       # 4. Upload the generated .unitypackage as a build artifact
       - name: Upload Artifact
