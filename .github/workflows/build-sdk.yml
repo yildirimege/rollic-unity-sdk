@@ -26,9 +26,9 @@ jobs:
         uses: actions/cache@v4
         with:
           path: Library
-          key: Library-test-${{ hashFiles('ProjectSettings/ProjectVersion.txt') }}
+          key: Library-test-v2-${{ hashFiles('ProjectSettings/ProjectVersion.txt') }}
           restore-keys: |
-            Library-test-
+            Library-test-v2-
 
       # 3. Run the Unity tests using a dedicated action from the GameCI ecosystem
       - name: Run Edit Mode Tests
