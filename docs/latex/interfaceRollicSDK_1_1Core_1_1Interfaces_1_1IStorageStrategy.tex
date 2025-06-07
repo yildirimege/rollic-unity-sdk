@@ -1,0 +1,133 @@
+\doxysection{Rollic\+SDK.\+Core.\+Interfaces.\+IStorage\+Strategy Interface Reference}
+\hypertarget{interfaceRollicSDK_1_1Core_1_1Interfaces_1_1IStorageStrategy}{}\label{interfaceRollicSDK_1_1Core_1_1Interfaces_1_1IStorageStrategy}\index{RollicSDK.Core.Interfaces.IStorageStrategy@{RollicSDK.Core.Interfaces.IStorageStrategy}}
+
+
+Interface for defining a data storage strategy. Implementations can include Player\+Prefs, file system, or encrypted storage.  
+
+
+
+
+Inheritance diagram for Rollic\+SDK.\+Core.\+Interfaces.\+IStorage\+Strategy\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{interfaceRollicSDK_1_1Core_1_1Interfaces_1_1IStorageStrategy__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Rollic\+SDK.\+Core.\+Interfaces.\+IStorage\+Strategy\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=218pt]{interfaceRollicSDK_1_1Core_1_1Interfaces_1_1IStorageStrategy__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{interfaceRollicSDK_1_1Core_1_1Interfaces_1_1IStorageStrategy_aebba8975d39b53449b1762ac242faf23}{Save}} (string key, string data)
+\begin{DoxyCompactList}\small\item\em Saves data associated with a key. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{interfaceRollicSDK_1_1Core_1_1Interfaces_1_1IStorageStrategy_a8e75804d6a102f13731b77e372de5a31}{Load}} (string key)
+\begin{DoxyCompactList}\small\item\em Loads data associated with a key. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{interfaceRollicSDK_1_1Core_1_1Interfaces_1_1IStorageStrategy_a8d21ede9ec9fc97d72ae98eb0039bf8f}{Delete}} (string key)
+\begin{DoxyCompactList}\small\item\em Deletes data associated with a key. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{interfaceRollicSDK_1_1Core_1_1Interfaces_1_1IStorageStrategy_a2593f55c94db7ff99c9184aced6c6614}{Exists}} (string key)
+\begin{DoxyCompactList}\small\item\em Checks if data exists for the given key. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Interface for defining a data storage strategy. Implementations can include Player\+Prefs, file system, or encrypted storage. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{interfaceRollicSDK_1_1Core_1_1Interfaces_1_1IStorageStrategy_a8d21ede9ec9fc97d72ae98eb0039bf8f}\label{interfaceRollicSDK_1_1Core_1_1Interfaces_1_1IStorageStrategy_a8d21ede9ec9fc97d72ae98eb0039bf8f} 
+\index{RollicSDK.Core.Interfaces.IStorageStrategy@{RollicSDK.Core.Interfaces.IStorageStrategy}!Delete@{Delete}}
+\index{Delete@{Delete}!RollicSDK.Core.Interfaces.IStorageStrategy@{RollicSDK.Core.Interfaces.IStorageStrategy}}
+\doxysubsubsection{\texorpdfstring{Delete()}{Delete()}}
+{\footnotesize\ttfamily void Rollic\+SDK.\+Core.\+Interfaces.\+IStorage\+Strategy.\+Delete (\begin{DoxyParamCaption}\item[{string}]{key }\end{DoxyParamCaption})}
+
+
+
+Deletes data associated with a key. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & The unique identifier to delete.\\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{classFileSystemStorageStrategy_ac32fd0e30c2d2866aa25da57a7857090}{File\+System\+Storage\+Strategy}}, \mbox{\hyperlink{classPlayerPrefsStorageStrategy_ab65ec1fbc5cd370200116b97b75c114e}{Player\+Prefs\+Storage\+Strategy}}, and \mbox{\hyperlink{classMockStorageStrategy_a886fbfafcefcc030e1474e794cd4f3cf}{Mock\+Storage\+Strategy}}.
+
+\Hypertarget{interfaceRollicSDK_1_1Core_1_1Interfaces_1_1IStorageStrategy_a2593f55c94db7ff99c9184aced6c6614}\label{interfaceRollicSDK_1_1Core_1_1Interfaces_1_1IStorageStrategy_a2593f55c94db7ff99c9184aced6c6614} 
+\index{RollicSDK.Core.Interfaces.IStorageStrategy@{RollicSDK.Core.Interfaces.IStorageStrategy}!Exists@{Exists}}
+\index{Exists@{Exists}!RollicSDK.Core.Interfaces.IStorageStrategy@{RollicSDK.Core.Interfaces.IStorageStrategy}}
+\doxysubsubsection{\texorpdfstring{Exists()}{Exists()}}
+{\footnotesize\ttfamily bool Rollic\+SDK.\+Core.\+Interfaces.\+IStorage\+Strategy.\+Exists (\begin{DoxyParamCaption}\item[{string}]{key }\end{DoxyParamCaption})}
+
+
+
+Checks if data exists for the given key. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & The key to check.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the key exists, false otherwise.
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classFileSystemStorageStrategy_a2952ada66bd56c056101408493e9da8c}{File\+System\+Storage\+Strategy}}, \mbox{\hyperlink{classPlayerPrefsStorageStrategy_acb69304b30689a86dd894a0dcffbe49a}{Player\+Prefs\+Storage\+Strategy}}, and \mbox{\hyperlink{classMockStorageStrategy_af6490619f5af8b8704ba390336a4bdb0}{Mock\+Storage\+Strategy}}.
+
+\Hypertarget{interfaceRollicSDK_1_1Core_1_1Interfaces_1_1IStorageStrategy_a8e75804d6a102f13731b77e372de5a31}\label{interfaceRollicSDK_1_1Core_1_1Interfaces_1_1IStorageStrategy_a8e75804d6a102f13731b77e372de5a31} 
+\index{RollicSDK.Core.Interfaces.IStorageStrategy@{RollicSDK.Core.Interfaces.IStorageStrategy}!Load@{Load}}
+\index{Load@{Load}!RollicSDK.Core.Interfaces.IStorageStrategy@{RollicSDK.Core.Interfaces.IStorageStrategy}}
+\doxysubsubsection{\texorpdfstring{Load()}{Load()}}
+{\footnotesize\ttfamily string Rollic\+SDK.\+Core.\+Interfaces.\+IStorage\+Strategy.\+Load (\begin{DoxyParamCaption}\item[{string}]{key }\end{DoxyParamCaption})}
+
+
+
+Loads data associated with a key. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & The unique identifier for the data.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The stored data, or an empty string if not found.
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classFileSystemStorageStrategy_af2fa2fa77fe026b935e9cf2faef8b255}{File\+System\+Storage\+Strategy}}, \mbox{\hyperlink{classPlayerPrefsStorageStrategy_a6e754c88a7e3b22e96a794b9a8add24e}{Player\+Prefs\+Storage\+Strategy}}, and \mbox{\hyperlink{classMockStorageStrategy_a5ef09031751b8acd4f278a9a1980bce0}{Mock\+Storage\+Strategy}}.
+
+\Hypertarget{interfaceRollicSDK_1_1Core_1_1Interfaces_1_1IStorageStrategy_aebba8975d39b53449b1762ac242faf23}\label{interfaceRollicSDK_1_1Core_1_1Interfaces_1_1IStorageStrategy_aebba8975d39b53449b1762ac242faf23} 
+\index{RollicSDK.Core.Interfaces.IStorageStrategy@{RollicSDK.Core.Interfaces.IStorageStrategy}!Save@{Save}}
+\index{Save@{Save}!RollicSDK.Core.Interfaces.IStorageStrategy@{RollicSDK.Core.Interfaces.IStorageStrategy}}
+\doxysubsubsection{\texorpdfstring{Save()}{Save()}}
+{\footnotesize\ttfamily void Rollic\+SDK.\+Core.\+Interfaces.\+IStorage\+Strategy.\+Save (\begin{DoxyParamCaption}\item[{string}]{key,  }\item[{string}]{data }\end{DoxyParamCaption})}
+
+
+
+Saves data associated with a key. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & The unique identifier for the data.\\
+\hline
+{\em data} & The data to store.\\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{classFileSystemStorageStrategy_a673566224709ddb33961dab00ed13798}{File\+System\+Storage\+Strategy}}, \mbox{\hyperlink{classPlayerPrefsStorageStrategy_a4a9a9bf14f0a834951f55918cd6cba11}{Player\+Prefs\+Storage\+Strategy}}, and \mbox{\hyperlink{classMockStorageStrategy_a2ea73921dcdb9570d61490e136a6fb99}{Mock\+Storage\+Strategy}}.
+
+
+
+The documentation for this interface was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Assets/\+Rollic\+SDK/\+Core/\+Interfaces/IStorage\+Strategy.\+cs\end{DoxyCompactItemize}

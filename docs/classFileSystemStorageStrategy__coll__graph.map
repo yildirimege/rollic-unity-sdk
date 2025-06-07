@@ -1,0 +1,5 @@
+<map id="FileSystemStorageStrategy" name="FileSystemStorageStrategy">
+<area shape="rect" id="Node000001" title="Storage strategy that saves data to the local file system using JSON files. Suitable for larger or st..." alt="" coords="5,193,268,368"/>
+<area shape="rect" id="Node000002" href="$interfaceRollicSDK_1_1Core_1_1Interfaces_1_1IStorageStrategy.html" title="Interface for defining a data storage strategy. Implementations can include PlayerPrefs,..." alt="" coords="48,5,225,145"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="139,159,139,193,134,193,134,159"/>
+</map>
