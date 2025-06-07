@@ -5,13 +5,14 @@ on:
     branches: [ main ]
   workflow_dispatch:
 
+# Grant the workflow permissions to commit the documentation back to the repository.
 permissions:
   contents: write
 
 jobs:
-  # -------------------------------------------------------------------
+  # ===============================================================
   # JOB 1: RUN UNIT TESTS (The Quality Gate)
-  # -------------------------------------------------------------------
+  # ===============================================================
   test:
     name: Run Unity Tests
     runs-on: ubuntu-latest
@@ -19,71 +20,66 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # This action simply runs a Unity command for us. It's much simpler.
-      - name: Run EditMode tests
-        uses: BLaZeKiLL/unity-run@v2
+      # This is the industry-standard action for running Unity tests.
+      - name: Run Edit Mode Tests
+        uses: game-ci/unity-test-runner@v4
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
-          # We use the customImage we know works, avoiding all resolution issues.
-          image: gameci/unity:2022.3.21f1-base-1
+          # We use a customImage to force the use of a known-good Docker image,
+          # avoiding all the "manifest not found" errors from before.
+          customImage: gameci/unity:2022.3.21f1-base-1
           
-          # The exact command-line arguments to tell Unity to run tests.
-          args: -batchmode -runTests -testPlatform EditMode -testResults ./editmode-results.xml -logFile -
-          
-          # Provide the license secrets
-          license: ${{ secrets.UNITY_LICENSE }}
-          license_user: ${{ secrets.UNITY_EMAIL }}
-          license_pass: ${{ secrets.UNITY_PASSWORD }}
+          # We explicitly tell it which tests to run.
+          testMode: EditMode
 
-      # Upload the test results XML file as an artifact
+      # Upload the test results as an artifact for inspection.
       - name: Upload Test Results
         uses: actions/upload-artifact@v4
         with:
           name: Test-Results
-          path: ./editmode-results.xml
+          path: ./*-results.xml
           if-no-files-found: 'ignore'
 
-      # This step CHECKS the results file to see if any tests failed.
-      # If the file contains 'failed="1"', it will fail the job.
-      - name: Check for test failures
-        run: |
-          if [ -f ./editmode-results.xml ] && grep -q 'failed="1"' ./editmode-results.xml; then
-            echo "Unit tests failed!"
-            exit 1
-          else
-            echo "All unit tests passed!"
-          fi
-
-  # -------------------------------------------------------------------
+  # ===============================================================
   # JOB 2: BUILD PACKAGE & DEPLOY DOCS (Runs only if 'test' succeeds)
-  # -------------------------------------------------------------------
+  # ===============================================================
   build-and-deploy:
     name: Build Package & Deploy Docs
     runs-on: ubuntu-latest
-    needs: test # This job still depends on the 'test' job succeeding
+    needs: test # This job depends on the 'test' job succeeding.
     steps:
-      # This part of the workflow is already perfect and does not need to change.
       - name: Checkout repository
         uses: actions/checkout@v4
-      - name: Generate meta file list
-        run: find Assets/RollicSDK -name \*.meta > metaList.txt
-      - name: Create Build Directory
-        run: mkdir Build
+
+      - name: Generate .unitypackage
+        run: |
+          find Assets/RollicSDK -name \*.meta > metaList.txt
+          mkdir Build
+        
       - name: Create .unitypackage
         uses: pCYSl5EDgo/create-unitypackage@v1.2.3
         with:
           package-path: 'Build/RollicSDK.unitypackage'
           include-files: 'metaList.txt'
+
       - name: Upload Package Artifact
         uses: actions/upload-artifact@v4
         with:
           name: RollicSDK-Package
           path: Build/RollicSDK.unitypackage
+
       - name: Install Doxygen and Graphviz
         run: sudo apt-get update && sudo apt-get install -y doxygen graphviz
+
       - name: Generate Doxygen Documentation
         run: doxygen Doxyfile
+
       - name: Add .nojekyll file
         run: touch docs/.nojekyll
+
       - name: Deploy Documentation to main branch
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
