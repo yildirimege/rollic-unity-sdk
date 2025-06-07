@@ -12,7 +12,7 @@ namespace RollicSDK.Data
     public class EventData
     {
         // --- Core Event Info ---
-        [JsonProperty("event_name")] // Controls the JSON key name
+        [JsonProperty("event_name")]
         public string EventName { get; private set; }
 
         [JsonProperty("event_id")]

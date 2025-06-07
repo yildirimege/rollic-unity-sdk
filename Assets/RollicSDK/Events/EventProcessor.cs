@@ -47,7 +47,7 @@ namespace RollicSDK.Core
         /// </summary>
         private IEnumerator ProcessQueue()
         {
-            // Wait a moment on startup before the first send attempt.
+            // Wait for a given period of time in app startup
             yield return new WaitForSeconds(_config.InitialRetryDelay);
 
             while (true)
@@ -64,7 +64,7 @@ namespace RollicSDK.Core
                             string reason = _config.MockOfflineMode ? "(Mock Offline Mode is Active)" : "(No Internet Connection)";
                             Debug.LogWarning($"[EventProcessor] Offline mode active {reason}. Waiting...");
                         }
-                        // If there's no connection, we use exponential wait times to avoid spamming.
+                        // If there's no connection, we use exponential wait times to avoid spamming.(Tis should be optimized acording to API WAF rules, e.g. how many requests in certain time results in HTTP413 - Too Many Requests.
                         _currentWaitTime = Mathf.Min(_currentWaitTime * 2, _config.MaxRetryDelay);
                     }
                     else
@@ -111,7 +111,7 @@ namespace RollicSDK.Core
                 }
                 else
                 {
-                    // If queue is empty, just wait for the normal interval.
+                    // If queue is empty, just wait for the normal interval. (Possible can be set to immediate send within a certain time. But this way is safer if we can afford to wait 15 seconds after sending the event at worst case.
                     _currentWaitTime = _config.SendInterval;
                 }
 

@@ -49,7 +49,6 @@ namespace RollicSDK.Core
 
             IDeviceInfoProvider deviceInfoProvider = CreateDeviceInfoProvider();
 
-            // Dependency Injections
             var storageStrategy = StorageStrategyFactory.Create(_config.StorageType);
 
             var eventQueue = new EventQueue(storageStrategy);
@@ -64,7 +63,7 @@ namespace RollicSDK.Core
             _eventProcessor.transform.SetParent(this.transform);
             _eventProcessor.Initialize(eventQueue, networkManager, _config);
 
-            // Initialize the main SDK Facade with all dependencies
+            // Auto initialize the main SDK
             RollicSDK.Initialize(_config, eventTracker, _sessionManager);
         }
 
@@ -92,8 +91,6 @@ namespace RollicSDK.Core
         /// </summary>
         private void OnApplicationQuit()
         {
-            // The event processor will be stopped as part of its GameObject being destroyed.
-            // We just need to ensure the session is correctly ended and data is saved.
             RollicSDK.Shutdown();
         }
 

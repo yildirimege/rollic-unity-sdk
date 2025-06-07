@@ -1,5 +1,4 @@
-﻿// File: RollicSDK/Core/RollicSDK.cs
-using RollicSDK.Core.Interfaces;
+﻿using RollicSDK.Core.Interfaces;
 using UnityEngine;
 using RollicSDK.Core;
 
@@ -26,7 +25,7 @@ namespace RollicSDK
         }
 
         /// <summary>
-        /// Initializes the SDK. Called internally by RollicSDKManager.
+        /// Initializes the SDK. Called internally by RollicSDKLifeCycleManager.
         /// </summary>
         /// <param name="config">The configuration settings for the SDK.</param>
         /// <param name="eventProcessor">The processor responsible for sending events.</param>
@@ -67,7 +66,6 @@ namespace RollicSDK
                 return;
             }
 
-            // The session duration is captured at the moment the event is tracked.
             var sessionTime = _instance._sessionManager.GetSessionDuration();
             _instance._eventTracker.TrackEvent(eventName, sessionTime);
         }
@@ -116,7 +114,6 @@ namespace RollicSDK
             {
                 if (_instance == null) return;
 
-                // End session to finalize and save session time.
                 _instance._sessionManager.EndSession();
                 _instance = null;
                 Debug.Log("[RollicSDK] SDK Shutdown.");

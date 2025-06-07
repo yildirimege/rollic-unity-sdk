@@ -1,5 +1,4 @@
-﻿// File: RollicSDK/Core/EventTracker.cs
-using RollicSDK.Data;
+﻿using RollicSDK.Data;
 using RollicSDK.Core.Interfaces;
 using UnityEngine;
 
@@ -29,8 +28,6 @@ namespace RollicSDK.Core
         /// <param name="sessionTime">The current session duration in seconds at the time of the event.</param>
         public void TrackEvent(string eventName, double sessionTime)
         {
-            // The logic for populating data is now correctly encapsulated inside the EventData class itself.
-            // The EventTracker's only job is to orchestrate the creation.
             var newEvent = EventData.Create(eventName, sessionTime, _deviceInfoProvider);
 
             _eventQueue.Enqueue(newEvent);

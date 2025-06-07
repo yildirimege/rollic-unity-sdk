@@ -3,19 +3,15 @@ using System.Text;
 using System.Threading.Tasks;
 using RollicSDK.Core.Interfaces;
 using UnityEngine;
-using Unity.Plastic.Newtonsoft.Json;
-
 
 namespace RollicSDK.Core
 {
     /// <summary>
     /// Concrete implementation of INetworkManager using HttpClient.
-    /// It's recommended to use UnityWebRequest for better engine integration,
-    /// but HttpClient works well for non-WebGL platforms.
     /// </summary>
     public class NetworkManager : INetworkManager
     {
-        // A single static HttpClient is recommended for the application's lifetime.
+        // A single static HTTPClient to be used in application lifetime.
         private static readonly HttpClient _httpClient = new HttpClient { Timeout = System.TimeSpan.FromSeconds(10) };
         private readonly RollicSDKConfig _config;
 
@@ -34,7 +30,6 @@ namespace RollicSDK.Core
 
             try
             {
-                // Using a 'using' statement ensures the content is disposed of correctly.
                 using var content = new StringContent(jsonPayload, Encoding.UTF8, "application/json");
                 var response = await _httpClient.PostAsync(url, content);
 
