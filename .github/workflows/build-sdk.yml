@@ -43,7 +43,7 @@ jobs:
 
       # 4. Upload the generated .unitypackage as a build artifact
       - name: Upload Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: RollicSDK-Package
           # The path must match the output path from our C# script
