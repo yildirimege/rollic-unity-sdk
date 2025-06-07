@@ -35,9 +35,9 @@ jobs:
           name: RollicSDK-Package
           path: Build/RollicSDK.unitypackage
 
-      # 4. Install Doxygen
+      # 4. Install Doxygen and Graphviz
       - name: Install Doxygen
-        run: sudo apt-get update && sudo apt-get install -y doxygen
+        run: sudo apt-get update && sudo apt-get install -y doxygen graphviz
 
       # 5. Generate the documentation into the /docs folder
       - name: Generate Doxygen Documentation
