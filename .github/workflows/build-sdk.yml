@@ -34,7 +34,7 @@ jobs:
           UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
-          unityVersion: 6000.0.45f1
+          unityVersion: 2022.3.22f1
           # The platform doesn't matter for exporting a package, but it's a required field.
           targetPlatform: StandaloneWindows64
           # This is the crucial part: tell Unity to run our C# exporter method
