@@ -58,8 +58,6 @@ jobs:
       - name: Generate Doxygen Documentation
         run: doxygen Doxyfile
 	
-      - name: List generated files
-        run: ls -R
 
       # 4. Use a specialized action to deploy the HTML folder to the gh-pages branch
       - name: Deploy to GitHub Pages
@@ -67,4 +65,6 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./Documentation/html
+	  force_orphan: true
+          cname: ''
    
