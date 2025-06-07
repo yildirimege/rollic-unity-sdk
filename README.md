@@ -13,12 +13,12 @@ The entire project, from unit testing and package creation to documentation depl
 -   **Session Tracking:** Automatically tracks the user's total time spent in the application, correctly handling app pause and resume states.
 -   **Custom Event Tracking:** Provides a simple and clean `RollicSDK.TrackEvent("your_event_name")` API.
 -   **Robust Offline Persistence:** Events are saved to local device storage if the user is offline and are sent automatically when the connection is restored, ensuring no data is ever lost.
--   **Network Optimization:** Events are intelligently batched and sent with an exponential backoff retry strategy to handle API errors or network issues efficiently without spamming the server.
--   **Extensible Architecture:** Built with modern software design patterns (DI,Strategy, Adapters) to easily support new platforms or features in the future.
+-   **Network Optimization:** Events are intelligently batched and sent with an exponential backoff retry strategy to handle API errors or network issues efficiently.
+-   **Extensible Architecture:** Built with modern software design patterns (DI, Strategy, Adapters) to easily support new platforms or features in the future.
 -   **Automated CI/CD Pipeline:**
-    -   **Unit Tested:** A full suite of unit tests are run automatically on every push to the `main` branch, ensuring code quality and preventing regressions.
-    -   **Automated Packaging:** The distributable `.unitypackage` is built automatically by a GitHub Action.
-    -   **Automated Documentation:** The full API documentation is generated from source code comments using Doxygen and deployed automatically.
+    -   **Unit Tested:** A full suite of unit tests are run automatically on every push to the `main` branch.
+    -   **Automated Packaging:** The distributable `.unitypackage` is built automatically for legacy support.
+    -   **Automated Documentation:** The API documentation is generated and deployed automatically from source code comments.
 
 ---
 
@@ -30,28 +30,41 @@ The entire project, from unit testing and package creation to documentation depl
 
 ---
 
-## Installation & Quick Start
+## Installation
 
-Follow these steps to integrate the Rollic SDK into your Unity project.
+This SDK can be installed via the Unity Package Manager (UPM) using a Git URL, which is the recommended method. A traditional `.unitypackage` is also provided for fallback.
 
-#### 1. Download the Latest Release
+### Recommended: Install via Unity Package Manager (UPM)
 
-Navigate to the **[Releases Page](https://github.com/yildirimege/rollic-unity-sdk/releases)** of this repository and download the `RollicSDK.unitypackage` from the latest release.
+This method keeps the SDK organized in your project's `Packages` folder and makes version management easy.
 
-#### 2. Import the Package
+1.  In your Unity project, open the **Package Manager** by going to **Window > Package Manager**.
+2.  Click the **`+`** icon in the top-left corner of the window.
+3.  Select **"Add package from git URL..."**.
+4.  Paste the following URL into the text box and click **Add**:
 
-Open your Unity project and import the package via the top menu: **Assets > Import Package > Custom Package...**. Select the `RollicSDK.unitypackage` file you just downloaded.
+    ```
+    https://github.com/yildirimege/rollic-unity-sdk.git#v1.0.0
+    ```
+    *(To use a different version, simply change the `#v1.0.0` part of the URL to the desired version tag from the [Releases Page](https://github.com/yildirimege/rollic-unity-sdk/releases).)*
 
-#### 3. Create the Configuration File
+    ![UPM Git URL Installation](https://user-images.githubusercontent.com/1090646/158942323-83244198-4c3e-42b7-873b-5544627198d2.png)
 
-The SDK requires a configuration asset to function.
+### Alternative: Install via `.unitypackage`
+
+1.  Navigate to the **[Releases Page](https://github.com/yildirimege/rollic-unity-sdk/releases)**.
+2.  Download the `RollicSDK.unitypackage` from the assets of the latest release.
+3.  Open your Unity project and import the package via the top menu: **Assets > Import Package > Custom Package...**.
+
+---
+
+## Quick Start After Installation
+
+After installing the SDK via either method, you must create a configuration file.
 
 1.  In your Unity Project window, create a `Resources` folder inside your `Assets` directory if one doesn't already exist.
 2.  Right-click inside the `Resources` folder and select **Create > Rollic SDK > Configuration**. This will create the required `RollicSDKConfig.asset` file.
-
-#### 4. Use the SDK
-
-The SDK initializes itself automatically. You can now track events from any of your game scripts.
+3.  The SDK is now ready to use! It will initialize itself automatically when the game starts.
 
 **Example Usage:**
 
@@ -84,4 +97,4 @@ This repository is a complete, working Unity project. To see a live demonstratio
 1.  Clone this repository to your local machine.
 2.  Open the project in a compatible version of Unity (e.g., `2022.3.21f1`).
 3.  Open the scene at **`Assets/Sample/Scenes/SampleScene.unity`**.
-4.  Enter Play Mode to use the interactive test harness, which allows you to send events and test offline functionality in real-time.
+4.  Enter Play Mode to use the interactive test harness.
