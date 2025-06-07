@@ -11,7 +11,13 @@ namespace RollicSDK.Core.Interfaces
         /// Tracks an arbitrary user event with the specified name and optional additional data.
         /// </summary>
         /// <param name="eventName">The name of the event (mandatory).</param>
-        /// <param name="additionalData">Optional dictionary of additional event data.</param>
-        void TrackEvent(string eventName, Dictionary<string, object> additionalData = null);
+        /// <param name="sessionTime">Duration of current session in seconds</param>
+        void TrackEvent(string eventName, double sessionTime);
+
+        /// <summary>
+        /// Gets the number of events currently waiting in the queue.
+        /// </summary>
+        /// <returns>The count of queued events.</returns>
+        int GetQueuedEventCount();
     }
 }
