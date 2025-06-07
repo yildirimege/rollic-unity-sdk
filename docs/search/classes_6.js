@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['sessionmanager_0',['SessionManager',['../classRollicSDK_1_1Core_1_1SessionManager.html',1,'RollicSDK::Core']]]
+  ['rollicsdk_0',['RollicSDK',['../classRollicSDK_1_1RollicSDK.html',1,'RollicSDK']]],
+  ['rollicsdkconfig_1',['RollicSDKConfig',['../classRollicSDK_1_1Core_1_1RollicSDKConfig.html',1,'RollicSDK::Core']]]
 ];

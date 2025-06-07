@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['networkmanager_0',['NetworkManager',['../classRollicSDK_1_1Core_1_1NetworkManager.html',1,'RollicSDK::Core']]]
+  ['mockdeviceinfoprovider_0',['MockDeviceInfoProvider',['../classMockDeviceInfoProvider.html',1,'']]],
+  ['mockstoragestrategy_1',['MockStorageStrategy',['../classMockStorageStrategy.html',1,'']]]
 ];

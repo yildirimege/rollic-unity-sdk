@@ -20,6 +20,11 @@ var annotated_dup =
       ] ],
       [ "RollicSDK", "classRollicSDK_1_1RollicSDK.html", null ]
     ] ],
+    [ "EventDataTests", "classEventDataTests.html", "classEventDataTests" ],
+    [ "EventQueueTests", "classEventQueueTests.html", "classEventQueueTests" ],
     [ "FileSystemStorageStrategy", "classFileSystemStorageStrategy.html", "classFileSystemStorageStrategy" ],
-    [ "PlayerPrefsStorageStrategy", "classPlayerPrefsStorageStrategy.html", "classPlayerPrefsStorageStrategy" ]
+    [ "MockDeviceInfoProvider", "classMockDeviceInfoProvider.html", "classMockDeviceInfoProvider" ],
+    [ "MockStorageStrategy", "classMockStorageStrategy.html", "classMockStorageStrategy" ],
+    [ "PlayerPrefsStorageStrategy", "classPlayerPrefsStorageStrategy.html", "classPlayerPrefsStorageStrategy" ],
+    [ "SessionManagerTests", "classSessionManagerTests.html", "classSessionManagerTests" ]
 ];

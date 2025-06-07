@@ -1,7 +1,15 @@
 var searchData=
 [
-  ['save_0',['save',['../interfaceRollicSDK_1_1Core_1_1Interfaces_1_1IStorageStrategy.html#aebba8975d39b53449b1762ac242faf23',1,'RollicSDK.Core.Interfaces.IStorageStrategy.Save()'],['../classFileSystemStorageStrategy.html#a673566224709ddb33961dab00ed13798',1,'FileSystemStorageStrategy.Save()'],['../classPlayerPrefsStorageStrategy.html#a4a9a9bf14f0a834951f55918cd6cba11',1,'PlayerPrefsStorageStrategy.Save()']]],
-  ['sessionmanager_1',['sessionmanager',['../classRollicSDK_1_1Core_1_1SessionManager.html',1,'RollicSDK.Core.SessionManager'],['../classRollicSDK_1_1Core_1_1SessionManager.html#af57876dfd550d25fb87a142d83968b10',1,'RollicSDK.Core.SessionManager.SessionManager()']]],
-  ['startsession_2',['startsession',['../interfaceRollicSDK_1_1Core_1_1Interfaces_1_1ISessionManager.html#aa2cb5686236295f95cd448c4acb53323',1,'RollicSDK.Core.Interfaces.ISessionManager.StartSession()'],['../classRollicSDK_1_1Core_1_1SessionManager.html#afdbd2cb92a38f9190e6386ae9d2908f4',1,'RollicSDK.Core.SessionManager.StartSession()']]],
-  ['storagetype_3',['StorageType',['../namespaceRollicSDK_1_1Core_1_1Enums.html#a1e6a7f17a19ad76b120cfa62fa4457e2',1,'RollicSDK::Core::Enums']]]
+  ['requeuebatch_0',['RequeueBatch',['../classRollicSDK_1_1Core_1_1EventQueue.html#a361094f46bb0a7c38999f9ec170cc859',1,'RollicSDK::Core::EventQueue']]],
+  ['requeuebatch_5fafterfailure_5faddsitemstofrontofqueue_1',['RequeueBatch_AfterFailure_AddsItemsToFrontOfQueue',['../classEventQueueTests.html#ad37221e5e818117e5b3898883c0e527e',1,'EventQueueTests']]],
+  ['resumesession_2',['ResumeSession',['../classRollicSDK_1_1Core_1_1SessionManager.html#abe48befee67e31848bc8b114de371c57',1,'RollicSDK::Core::SessionManager']]],
+  ['rollicsdk_3',['rollicsdk',['../classRollicSDK_1_1RollicSDK.html',1,'RollicSDK.RollicSDK'],['../namespaceRollicSDK.html',1,'RollicSDK']]],
+  ['rollicsdk_3a_3acore_4',['Core',['../namespaceRollicSDK_1_1Core.html',1,'RollicSDK']]],
+  ['rollicsdk_3a_3acore_3a_3adataclasses_5',['Dataclasses',['../namespaceRollicSDK_1_1Core_1_1Dataclasses.html',1,'RollicSDK::Core']]],
+  ['rollicsdk_3a_3acore_3a_3aenums_6',['Enums',['../namespaceRollicSDK_1_1Core_1_1Enums.html',1,'RollicSDK::Core']]],
+  ['rollicsdk_3a_3acore_3a_3ainterfaces_7',['Interfaces',['../namespaceRollicSDK_1_1Core_1_1Interfaces.html',1,'RollicSDK::Core']]],
+  ['rollicsdk_3a_3acore_3a_3astorage_8',['Storage',['../namespaceRollicSDK_1_1Core_1_1Storage.html',1,'RollicSDK::Core']]],
+  ['rollicsdk_3a_3adata_9',['Data',['../namespaceRollicSDK_1_1Data.html',1,'RollicSDK']]],
+  ['rollicsdk_3a_3aplatform_10',['Platform',['../namespaceRollicSDK_1_1Platform.html',1,'RollicSDK']]],
+  ['rollicsdkconfig_11',['RollicSDKConfig',['../classRollicSDK_1_1Core_1_1RollicSDKConfig.html',1,'RollicSDK::Core']]]
 ];

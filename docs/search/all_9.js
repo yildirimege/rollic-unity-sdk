@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['pausesession_0',['PauseSession',['../classRollicSDK_1_1Core_1_1SessionManager.html#ade065a988841a593e8c8425915dbbc45',1,'RollicSDK::Core::SessionManager']]],
-  ['playerprefsstoragestrategy_1',['PlayerPrefsStorageStrategy',['../classPlayerPrefsStorageStrategy.html',1,'']]],
-  ['postasync_2',['postasync',['../interfaceRollicSDK_1_1Core_1_1Interfaces_1_1INetworkManager.html#aeaedef5a0a53c8c28b9b2614a5434a6c',1,'RollicSDK.Core.Interfaces.INetworkManager.PostAsync()'],['../classRollicSDK_1_1Core_1_1NetworkManager.html#ad1439e109cadfeae85fe44ff48c1e3a7',1,'RollicSDK.Core.NetworkManager.PostAsync()']]]
+  ['onsessionended_0',['OnSessionEnded',['../classRollicSDK_1_1Core_1_1SessionManager.html#a4a5e4c836189e40653a2b126611de029',1,'RollicSDK::Core::SessionManager']]],
+  ['onsessionpaused_1',['OnSessionPaused',['../classRollicSDK_1_1Core_1_1SessionManager.html#ae1ed35af250a74fd32b7327077d4664c',1,'RollicSDK::Core::SessionManager']]],
+  ['onsessionresumed_2',['OnSessionResumed',['../classRollicSDK_1_1Core_1_1SessionManager.html#ac1d0da23cbe0d242fb4530efc8dd4a93',1,'RollicSDK::Core::SessionManager']]],
+  ['onsessionstarted_3',['OnSessionStarted',['../classRollicSDK_1_1Core_1_1SessionManager.html#a1138b87782b326af3848837c7102bab2',1,'RollicSDK::Core::SessionManager']]]
 ];
