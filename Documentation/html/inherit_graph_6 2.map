@@ -1,7 +1,0 @@
-<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$interface_rollic_s_d_k_1_1_core_1_1_interfaces_1_1_i_storage_strategy.html" title="Interface for defining a data storage strategy. Implementations can include PlayerPrefs,..." alt="" coords="5,23,186,64"/>
-<area shape="rect" id="Node000001" href="$class_file_system_storage_strategy.html" title="Storage strategy that saves data to the local file system using JSON files. Suitable for larger or st..." alt="" coords="235,5,416,31"/>
-<area shape="poly" id="edge4_Node000000_Node000001" title=" " alt="" coords="201,29,234,26,234,31,201,35"/>
-<area shape="rect" id="Node000002" href="$class_player_prefs_storage_strategy.html" title="Storage strategy using Unity&#39;s PlayerPrefs for simple key&#45;value data persistence. Suitable for small ..." alt="" coords="234,55,417,80"/>
-<area shape="poly" id="edge5_Node000000_Node000002" title=" " alt="" coords="201,52,234,55,233,61,201,57"/>
-</map>

@@ -1,5 +1,0 @@
-<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$interface_rollic_s_d_k_1_1_core_1_1_interfaces_1_1_i_session_manager.html" title="Interface for managing user session tracking." alt="" coords="5,5,186,46"/>
-<area shape="rect" id="Node000001" href="$class_rollic_s_d_k_1_1_core_1_1_session_manager.html" title="Manages user session timing with support for start, end, pause, and resume. Persists session state us..." alt="" coords="234,13,449,38"/>
-<area shape="poly" id="edge3_Node000000_Node000001" title=" " alt="" coords="201,23,233,23,233,28,201,28"/>
-</map>

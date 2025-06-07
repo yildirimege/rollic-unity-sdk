@@ -1,5 +1,0 @@
-<map id="PlayerPrefsStorageStrategy" name="PlayerPrefsStorageStrategy">
-<area shape="rect" id="Node000001" title="Storage strategy using Unity&#39;s PlayerPrefs for simple key&#45;value data persistence. Suitable for small ..." alt="" coords="5,211,178,353"/>
-<area shape="rect" id="Node000002" href="$interface_rollic_s_d_k_1_1_core_1_1_interfaces_1_1_i_storage_strategy.html" title="Interface for defining a data storage strategy. Implementations can include PlayerPrefs,..." alt="" coords="7,5,176,163"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="94,178,94,211,89,211,89,178"/>
-</map>

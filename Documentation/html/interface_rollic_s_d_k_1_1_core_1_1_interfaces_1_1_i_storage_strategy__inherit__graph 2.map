@@ -1,7 +1,0 @@
-<map id="RollicSDK.Core.Interfaces.IStorageStrategy" name="RollicSDK.Core.Interfaces.IStorageStrategy">
-<area shape="rect" id="Node000001" title="Interface for defining a data storage strategy. Implementations can include PlayerPrefs,..." alt="" coords="150,5,320,163"/>
-<area shape="rect" id="Node000002" href="$class_file_system_storage_strategy.html" title="Storage strategy that saves data to the local file system using JSON files. Suitable for larger or st..." alt="" coords="5,211,237,388"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="189,177,170,212,165,210,184,174"/>
-<area shape="rect" id="Node000003" href="$class_player_prefs_storage_strategy.html" title="Storage strategy using Unity&#39;s PlayerPrefs for simple key&#45;value data persistence. Suitable for small ..." alt="" coords="262,228,434,371"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="285,174,313,227,309,230,280,177"/>
-</map>

@@ -1,5 +1,0 @@
-<map id="RollicSDK.Core.Interfaces.INetworkManager" name="RollicSDK.Core.Interfaces.INetworkManager">
-<area shape="rect" id="Node000001" title="Interface defining the contract for network operations." alt="" coords="18,5,219,117"/>
-<area shape="rect" id="Node000002" href="$class_rollic_s_d_k_1_1_core_1_1_network_manager.html" title="Concrete implementation of INetworkManager using HttpClient. It&#39;s recommended to use UnityWebRequest ..." alt="" coords="5,165,231,296"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="121,132,121,165,116,165,116,132"/>
-</map>

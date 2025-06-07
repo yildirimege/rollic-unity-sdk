@@ -1,7 +1,0 @@
-<map id="RollicSDK.Core.SessionManager" name="RollicSDK.Core.SessionManager">
-<area shape="rect" id="Node000001" title="Manages user session timing with support for start, end, pause, and resume. Persists session state us..." alt="" coords="114,223,337,403"/>
-<area shape="rect" id="Node000002" href="$interfaceRollicSDK_1_1Core_1_1Interfaces_1_1ISessionManager.html" title="Interface for managing user session tracking." alt="" coords="5,30,221,135"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="147,147,184,221,179,224,142,149"/>
-<area shape="rect" id="Node000003" href="$interfaceRollicSDK_1_1Core_1_1Interfaces_1_1IStorageStrategy.html" title="Interface for defining a data storage strategy. Implementations can include PlayerPrefs,..." alt="" coords="245,5,429,160"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="302,162,279,209,274,207,297,159"/>
-</map>

@@ -1,5 +1,0 @@
-<map id="RollicSDK.Core.EventProcessor" name="RollicSDK.Core.EventProcessor">
-<area shape="rect" id="Node000001" title="A MonoBehaviour responsible for processing the event queue in the background. It periodically batches..." alt="" coords="5,120,235,231"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="70,5,171,72"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="123,87,123,120,118,120,118,87"/>
-</map>
