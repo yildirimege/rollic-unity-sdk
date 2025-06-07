@@ -1,56 +1,99 @@
-name: Build SDK and Deploy Documentation
+name: Test, Build, and Deploy Rollic SDK
 
 on:
   push:
     branches: [ main ]
   workflow_dispatch:
+
+# Grant the workflow permissions to commit the documentation back to the repository.
 permissions:
   contents: write
 
 jobs:
-  # This single job does everything now.
-  build-and-publish:
-    name: Build, Document, and Publish
+  # -------------------------------------------------------------------
+  # JOB 1: RUN UNIT TESTS 
+  # -------------------------------------------------------------------
+  test:
+    name: Run Unity Tests
     runs-on: ubuntu-latest
     steps:
       # 1. Checkout the repository code
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # 2. Generate .unitypackage (from your working setup)
+      # 2. Cache the Unity Library folder to speed up subsequent test runs
+      - name: Cache Unity Library
+        uses: actions/cache@v4
+        with:
+          path: Library
+          key: Library-test-${{ hashFiles('ProjectSettings/ProjectVersion.txt') }}
+          restore-keys: |
+            Library-test-
+
+      # 3. Run the Unity tests using a dedicated action from the GameCI ecosystem
+      - name: Run Edit Mode Tests
+        uses: game-ci/unity-test-runner@v4
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+        with:
+          unityVersion: 2022.3.21f1
+          # Tell the runner to only execute Edit Mode tests
+          testMode: EditMode
+
+      # 4. Upload the test results as an artifact for inspection if needed
+      - name: Upload Test Results
+        uses: actions/upload-artifact@v4
+        with:
+          name: Test-Results
+          path: ./*-results.xml
+          if-no-files-found: 'ignore' # Don't fail the workflow if no test result file is found
+
+  # -------------------------------------------------------------------
+  # JOB 2: BUILD PACKAGE & DEPLOY DOCS
+  # -------------------------------------------------------------------
+  build-and-deploy:
+    name: Build Package & Deploy Docs
+    runs-on: ubuntu-latest
+    
+    # This is the crucial line that creates the dependency.
+    # This job will not start until the 'test' job has completed successfully.
+    needs: test
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
       - name: Generate meta file list
         run: find Assets/RollicSDK -name \*.meta > metaList.txt
+
       - name: Create Build Directory
         run: mkdir Build
+        
       - name: Create .unitypackage
         uses: pCYSl5EDgo/create-unitypackage@v1.2.3
         with:
           package-path: 'Build/RollicSDK.unitypackage'
           include-files: 'metaList.txt'
 
-      # 3. Upload the .unitypackage artifact
       - name: Upload Package Artifact
         uses: actions/upload-artifact@v4
         with:
           name: RollicSDK-Package
           path: Build/RollicSDK.unitypackage
 
-      # 4. Install Doxygen and Graphviz
-      - name: Install Doxygen
+      - name: Install Doxygen and Graphviz
         run: sudo apt-get update && sudo apt-get install -y doxygen graphviz
 
-      # 5. Generate the documentation into the /docs folder
       - name: Generate Doxygen Documentation
         run: doxygen Doxyfile
 
-      # 6. Add a .nojekyll file to the docs folder
       - name: Add .nojekyll file
         run: touch docs/.nojekyll
 
-      # 7. Commit and push the generated /docs folder to the main branch
       - name: Deploy Documentation to main branch
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "docs: Auto-generate documentation"
-          # The directory to add and commit
           file_pattern: docs/
