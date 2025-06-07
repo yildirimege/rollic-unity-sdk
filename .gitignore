@@ -19,3 +19,5 @@ MemoryCaptures/
 Logs/
 *.log
 
+/Build/
+/Documentation/
