@@ -17,7 +17,7 @@ jobs:
       # 2. Generate a list of all .meta files for the SDK
       #    This is the crucial input for the packaging tool.
       - name: Generate meta file list
-        run: find Assets/RollicSDK -name \*.meta > metaList.txt
+        run: find Assets/Resources/RollicSDK -name \*.meta > metaList.txt
 
       # 3. Create the output directory
       - name: Create Build Directory
