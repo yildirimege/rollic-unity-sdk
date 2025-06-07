@@ -3,7 +3,7 @@ using RollicSDK.Core.Interfaces;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-using Unity.Plastic.Newtonsoft.Json;
+using Newtonsoft.Json;
 
 namespace RollicSDK.Core
 {
