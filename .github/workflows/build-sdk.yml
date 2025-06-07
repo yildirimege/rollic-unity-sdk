@@ -15,7 +15,7 @@ jobs:
     steps:
       # 1. Checkout the repository code
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       # 2. Cache the Unity Library folder to speed up subsequent runs
       - name: Cache Unity Library
