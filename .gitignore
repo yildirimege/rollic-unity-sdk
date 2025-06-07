@@ -18,8 +18,3 @@ MemoryCaptures/
 # Unity log files
 Logs/
 *.log
-
-/Build/
-/Documentation/
-Documentation/
-Build/
