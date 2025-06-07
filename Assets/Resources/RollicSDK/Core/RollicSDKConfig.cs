@@ -36,5 +36,8 @@ namespace RollicSDK.Core
         [Header("Debugging")]
         [Tooltip("Enable detailed SDK logs in the console.")]
         public bool EnableDebugLogging = false;
+
+        [Tooltip("If checked, the SDK will simulate being offline, forcing events to queue up even with an internet connection.")]
+        public bool MockOfflineMode = false;
     }
 }

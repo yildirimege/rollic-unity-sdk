@@ -3,6 +3,7 @@ using RollicSDK.Core.Interfaces;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using Unity.Plastic.Newtonsoft.Json;
 
 namespace RollicSDK.Core
 {
@@ -94,7 +95,7 @@ namespace RollicSDK.Core
         private void SaveQueueToStorage()
         {
             var serializableQueue = new SerializableEventQueue(_eventQueue);
-            string json = JsonUtility.ToJson(serializableQueue);
+            string json = JsonConvert.SerializeObject(serializableQueue, Formatting.Indented);
             _storage.Save(StorageKey, json);
         }
 
@@ -107,7 +108,7 @@ namespace RollicSDK.Core
 
             try
             {
-                var wrapper = JsonUtility.FromJson<SerializableEventQueue>(json);
+                var wrapper = JsonConvert.DeserializeObject<SerializableEventQueue>(json);
                 return new Queue<EventData>(wrapper.Events ?? new List<EventData>());
             }
             catch (Exception e)
@@ -121,8 +122,15 @@ namespace RollicSDK.Core
         [Serializable]
         private class SerializableEventQueue
         {
-            public List<EventData> Events;
-            public SerializableEventQueue(Queue<EventData> queue) => Events = new List<EventData>(queue);
+            [JsonProperty("Events")]
+            public List<EventData> Events = new();
+
+            public SerializableEventQueue() { }
+
+            public SerializableEventQueue(Queue<EventData> queue)
+            {
+                Events = new List<EventData>(queue);
+            }
         }
     }
 }
