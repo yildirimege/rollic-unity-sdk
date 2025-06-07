@@ -1,4 +1,4 @@
-name: Build Rollic SDK Package
+name: Create Rollic SDK Package
 
 on:
   push:
@@ -6,50 +6,34 @@ on:
   workflow_dispatch:
 
 jobs:
-  build-package:
-    name: Build .unitypackage
+  create-package:
+    name: Create .unitypackage
     runs-on: ubuntu-latest
     steps:
-      # 1. Checkout repository
+      # 1. Checkout the repository code
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # 2. Cache Unity Library
-      - name: Cache Unity Library
-        uses: actions/cache@v4
+      # 2. Generate a list of all .meta files for the SDK
+      #    This is the crucial input for the packaging tool.
+      - name: Generate meta file list
+        run: find Assets/RollicSDK -name \*.meta > metaList.txt
+
+      # 3. Create the output directory
+      - name: Create Build Directory
+        run: mkdir Build
+
+      # 4. Use the lightweight action to create the .unitypackage
+      - name: Create .unitypackage
+        uses: pCYSl5EDgo/create-unitypackage@v1.2.3
         with:
-          path: Library
-          key: Library-${{ hashFiles('ProjectSettings/ProjectVersion.txt') }}
-          restore-keys: |
-            Library-
+          # The path where the final package will be saved
+          package-path: 'Build/RollicSDK.unitypackage'
 
-      # 3. Build with Unity using an EXPLICIT Docker Image
-      - name: Build with Unity
-        uses: game-ci/unity-builder@v4
-        env:
-          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
-          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
-          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
-        with:
-          # --- THIS IS THE DEFINITIVE FIX ---
+          # The text file containing the list of meta files to include
+          include-files: 'metaList.txt'
 
-          # We are no longer letting the action guess. We are telling it
-          # the exact, full name of the Docker image to use.
-          customImage: gameci/unity:2022.3.21f1-base-1
-
-          # We no longer need unityVersion, targetPlatform, or customParameters
-          # because customImage overrides them all for the image selection step.
-
-          # The method to execute inside the now-correctly-loaded editor.
-          executeMethod: Sample.Editor.PackageExporter.Export
-          
-          # ------------------------------------
-
-      # 4. List files to verify the package was created
-      - name: List files in the workspace
-        run: ls -R
-
-      # 5. Upload the generated artifact
+      # 5. Upload the final package as a build artifact
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
