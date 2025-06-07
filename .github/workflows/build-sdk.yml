@@ -5,7 +5,7 @@ on:
     branches: [ main ]
   workflow_dispatch:
 
-# Grant the workflow permissions to commit the documentation back to the repository.
+# We still need this permission for the documentation deployment.
 permissions:
   contents: write
 
@@ -20,7 +20,16 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # This is the industry-standard action for running Unity tests.
+      - name: Cache Unity Library
+        uses: actions/cache@v4
+        with:
+          path: Library
+          key: Library-test-v3-${{ hashFiles('ProjectSettings/ProjectVersion.txt') }} # Incremented key to ensure a fresh cache
+          restore-keys: |
+            Library-test-v3-
+
+      # This is the standard, official action for running tests.
+      # We are now using it in its simplest form.
       - name: Run Edit Mode Tests
         uses: game-ci/unity-test-runner@v4
         env:
@@ -28,14 +37,16 @@ jobs:
           UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
-          # We use a customImage to force the use of a known-good Docker image,
-          # avoiding all the "manifest not found" errors from before.
-          customImage: gameci/unity:2022.3.21f1-base-1
-          
-          # We explicitly tell it which tests to run.
+          # The action will automatically read the version from your ProjectSettings.
+          # We no longer need to specify it.
+
+          # The action will automatically determine the correct Docker image.
+          # Now that your manifest.json is clean, this will succeed.
+
+          # We just need to tell it which tests to run.
           testMode: EditMode
 
-      # Upload the test results as an artifact for inspection.
+      # This step uploads the XML test results for inspection.
       - name: Upload Test Results
         uses: actions/upload-artifact@v4
         with:
@@ -51,35 +62,29 @@ jobs:
     runs-on: ubuntu-latest
     needs: test # This job depends on the 'test' job succeeding.
     steps:
+      # This part of the workflow has been working correctly. We will not change it.
       - name: Checkout repository
         uses: actions/checkout@v4
-
-      - name: Generate .unitypackage
-        run: |
-          find Assets/RollicSDK -name \*.meta > metaList.txt
-          mkdir Build
-        
+      - name: Generate meta file list
+        run: find Assets/RollicSDK -name \*.meta > metaList.txt
+      - name: Create Build Directory
+        run: mkdir Build
       - name: Create .unitypackage
         uses: pCYSl5EDgo/create-unitypackage@v1.2.3
         with:
           package-path: 'Build/RollicSDK.unitypackage'
           include-files: 'metaList.txt'
-
       - name: Upload Package Artifact
         uses: actions/upload-artifact@v4
         with:
           name: RollicSDK-Package
           path: Build/RollicSDK.unitypackage
-
       - name: Install Doxygen and Graphviz
         run: sudo apt-get update && sudo apt-get install -y doxygen graphviz
-
       - name: Generate Doxygen Documentation
         run: doxygen Doxyfile
-
       - name: Add .nojekyll file
         run: touch docs/.nojekyll
-
       - name: Deploy Documentation to main branch
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
