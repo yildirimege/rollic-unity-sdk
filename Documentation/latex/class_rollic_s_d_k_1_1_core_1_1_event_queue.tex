@@ -1,0 +1,46 @@
+\doxysection{Rollic\+SDK.\+Core.\+Event\+Queue Class Reference}
+\hypertarget{class_rollic_s_d_k_1_1_core_1_1_event_queue}{}\label{class_rollic_s_d_k_1_1_core_1_1_event_queue}\index{RollicSDK.Core.EventQueue@{RollicSDK.Core.EventQueue}}
+
+
+Manages a persistent, thread-\/safe queue of events.  
+
+
+
+
+Collaboration diagram for Rollic\+SDK.\+Core.\+Event\+Queue\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=253pt]{class_rollic_s_d_k_1_1_core_1_1_event_queue__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_rollic_s_d_k_1_1_core_1_1_event_queue_a3f909cdb42a83eeb5665609ccf326703}\label{class_rollic_s_d_k_1_1_core_1_1_event_queue_a3f909cdb42a83eeb5665609ccf326703} 
+{\bfseries Event\+Queue} (\mbox{\hyperlink{interface_rollic_s_d_k_1_1_core_1_1_interfaces_1_1_i_storage_strategy}{IStorage\+Strategy}} storage\+Strategy, bool enable\+Debug\+Logging=false)
+\item 
+\Hypertarget{class_rollic_s_d_k_1_1_core_1_1_event_queue_a1ecdeef5f0bacec57a8a4b9e2f3020e3}\label{class_rollic_s_d_k_1_1_core_1_1_event_queue_a1ecdeef5f0bacec57a8a4b9e2f3020e3} 
+void {\bfseries Enqueue} (\mbox{\hyperlink{class_rollic_s_d_k_1_1_data_1_1_event_data}{Event\+Data}} event\+Data)
+\item 
+\Hypertarget{class_rollic_s_d_k_1_1_core_1_1_event_queue_acae4110c7c004e5cba579646fd253354}\label{class_rollic_s_d_k_1_1_core_1_1_event_queue_acae4110c7c004e5cba579646fd253354} 
+List$<$ \mbox{\hyperlink{class_rollic_s_d_k_1_1_data_1_1_event_data}{Event\+Data}} $>$ {\bfseries Dequeue\+Batch} (int max\+Batch\+Size)
+\begin{DoxyCompactList}\small\item\em Dequeues a batch of events up to the specified batch size. \end{DoxyCompactList}\item 
+\Hypertarget{class_rollic_s_d_k_1_1_core_1_1_event_queue_a361094f46bb0a7c38999f9ec170cc859}\label{class_rollic_s_d_k_1_1_core_1_1_event_queue_a361094f46bb0a7c38999f9ec170cc859} 
+void {\bfseries Requeue\+Batch} (List$<$ \mbox{\hyperlink{class_rollic_s_d_k_1_1_data_1_1_event_data}{Event\+Data}} $>$ batch)
+\begin{DoxyCompactList}\small\item\em Adds a batch of events back to the front of the queue. Used when a network request fails and events need to be retried. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_rollic_s_d_k_1_1_core_1_1_event_queue_a017cc75e4f349f66a950d0e8b2e18a8c}\label{class_rollic_s_d_k_1_1_core_1_1_event_queue_a017cc75e4f349f66a950d0e8b2e18a8c} 
+int {\bfseries Count}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Manages a persistent, thread-\/safe queue of events. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Assets/\+Rollic\+SDK/\+Events/Event\+Queue.\+cs\end{DoxyCompactItemize}
