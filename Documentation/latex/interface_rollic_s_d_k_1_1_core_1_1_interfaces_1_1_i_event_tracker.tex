@@ -1,0 +1,77 @@
+\doxysection{Rollic\+SDK.\+Core.\+Interfaces.\+IEvent\+Tracker Interface Reference}
+\hypertarget{interface_rollic_s_d_k_1_1_core_1_1_interfaces_1_1_i_event_tracker}{}\label{interface_rollic_s_d_k_1_1_core_1_1_interfaces_1_1_i_event_tracker}\index{RollicSDK.Core.Interfaces.IEventTracker@{RollicSDK.Core.Interfaces.IEventTracker}}
+
+
+Interface for tracking user events in the SDK.  
+
+
+
+
+Inheritance diagram for Rollic\+SDK.\+Core.\+Interfaces.\+IEvent\+Tracker\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=294pt]{interface_rollic_s_d_k_1_1_core_1_1_interfaces_1_1_i_event_tracker__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Rollic\+SDK.\+Core.\+Interfaces.\+IEvent\+Tracker\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=247pt]{interface_rollic_s_d_k_1_1_core_1_1_interfaces_1_1_i_event_tracker__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{interface_rollic_s_d_k_1_1_core_1_1_interfaces_1_1_i_event_tracker_a95e1249b7a96bbcb1cf68882450f581b}{Track\+Event}} (string event\+Name, double session\+Time)
+\begin{DoxyCompactList}\small\item\em Tracks an arbitrary user event with the specified name and optional additional data. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{interface_rollic_s_d_k_1_1_core_1_1_interfaces_1_1_i_event_tracker_a49a8bf597e403b8cea4b4f812c6bb41a}{Get\+Queued\+Event\+Count}} ()
+\begin{DoxyCompactList}\small\item\em Gets the number of events currently waiting in the queue. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Interface for tracking user events in the SDK. 
+
+\label{doc-func-members}
+\Hypertarget{interface_rollic_s_d_k_1_1_core_1_1_interfaces_1_1_i_event_tracker_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{interface_rollic_s_d_k_1_1_core_1_1_interfaces_1_1_i_event_tracker_a49a8bf597e403b8cea4b4f812c6bb41a}\index{RollicSDK.Core.Interfaces.IEventTracker@{RollicSDK.Core.Interfaces.IEventTracker}!GetQueuedEventCount@{GetQueuedEventCount}}
+\index{GetQueuedEventCount@{GetQueuedEventCount}!RollicSDK.Core.Interfaces.IEventTracker@{RollicSDK.Core.Interfaces.IEventTracker}}
+\doxysubsubsection{\texorpdfstring{GetQueuedEventCount()}{GetQueuedEventCount()}}
+{\footnotesize\ttfamily \label{interface_rollic_s_d_k_1_1_core_1_1_interfaces_1_1_i_event_tracker_a49a8bf597e403b8cea4b4f812c6bb41a} 
+int Rollic\+SDK.\+Core.\+Interfaces.\+IEvent\+Tracker.\+Get\+Queued\+Event\+Count (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Gets the number of events currently waiting in the queue. 
+
+\begin{DoxyReturn}{Returns}
+The count of queued events.
+\end{DoxyReturn}
+\Hypertarget{interface_rollic_s_d_k_1_1_core_1_1_interfaces_1_1_i_event_tracker_a95e1249b7a96bbcb1cf68882450f581b}\index{RollicSDK.Core.Interfaces.IEventTracker@{RollicSDK.Core.Interfaces.IEventTracker}!TrackEvent@{TrackEvent}}
+\index{TrackEvent@{TrackEvent}!RollicSDK.Core.Interfaces.IEventTracker@{RollicSDK.Core.Interfaces.IEventTracker}}
+\doxysubsubsection{\texorpdfstring{TrackEvent()}{TrackEvent()}}
+{\footnotesize\ttfamily \label{interface_rollic_s_d_k_1_1_core_1_1_interfaces_1_1_i_event_tracker_a95e1249b7a96bbcb1cf68882450f581b} 
+void Rollic\+SDK.\+Core.\+Interfaces.\+IEvent\+Tracker.\+Track\+Event (\begin{DoxyParamCaption}\item[{string}]{event\+Name}{, }\item[{double}]{session\+Time}{}\end{DoxyParamCaption})}
+
+
+
+Tracks an arbitrary user event with the specified name and optional additional data. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em event\+Name} & The name of the event (mandatory).\\
+\hline
+{\em session\+Time} & Duration of current session in seconds\\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this interface was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Assets/\+Rollic\+SDK/\+Core/\+Interfaces/IEvent\+Tracker.\+cs\end{DoxyCompactItemize}

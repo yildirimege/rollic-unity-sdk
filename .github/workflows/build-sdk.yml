@@ -39,3 +39,29 @@ jobs:
         with:
           name: RollicSDK-Package
           path: Build/RollicSDK.unitypackage
+  deploy-docs:
+    name: Deploy Documentation
+    runs-on: ubuntu-latest
+    # This job needs permission to write to the gh-pages branch
+    permissions:
+      contents: write
+    steps:
+      # 1. Checkout the repository
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2. Install Doxygen and Graphviz on the runner
+      - name: Install Doxygen & Graphviz
+        run: sudo apt-get update && sudo apt-get install -y doxygen graphviz
+
+      # 3. Generate the documentation by running Doxygen
+      - name: Generate Doxygen Documentation
+        run: doxygen Doxyfile
+
+      # 4. Use a specialized action to deploy the HTML folder to the gh-pages branch
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./Documentation/html
+   
