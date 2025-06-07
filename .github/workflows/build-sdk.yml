@@ -1,0 +1,66 @@
+name: Build Rollic SDK Package
+
+# Controls when the action will run
+on:
+  # Triggers the workflow on push events but only for the main branch
+  push:
+    branches: [ main ]
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  build-package:
+    name: Build .unitypackage
+    runs-on: ubuntu-latest
+    steps:
+      # 1. Checkout the repository code
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # 2. Cache the Unity Library folder to speed up subsequent runs
+      - name: Cache Unity Library
+        uses: actions/cache@v3
+        with:
+          path: Library
+          key: Library-${{ hashFiles('ProjectSettings/ProjectVersion.txt') }}
+          restore-keys: |
+            Library-
+
+      # 3. The core step: Run the Unity command-line process
+      - name: Build with Unity
+        uses: game-ci/unity-builder@v2
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+        with:
+          # Set your project's Unity version here
+          unityVersion: 2021.3.16f1
+          # The platform doesn't matter for exporting a package, but it's a required field.
+          targetPlatform: StandaloneWindows64
+          # This is the crucial part: tell Unity to run our C# exporter method
+          executeMethod: Sample.Editor.PackageExporter.Export
+
+      # 4. Upload the generated .unitypackage as a build artifact
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: RollicSDK-Package
+          # The path must match the output path from our C# script
+          path: Build/RollicSDK.unitypackage
+          
+# --- For the future: How to add a test stage ---
+#  test:
+#    name: Run Unity Tests
+#    needs: build-package # This job runs after the build job
+#    runs-on: ubuntu-latest
+#    steps:
+#      # ... (checkout, cache, etc.)
+#      - name: Run tests
+#        uses: game-ci/unity-test-runner@v2
+#        env:
+#          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+#          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+#          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+#        with:
+#          unityVersion: 2021.3.16f1
