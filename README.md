@@ -14,7 +14,7 @@ The entire project, from unit testing and package creation to documentation depl
 -   **Custom Event Tracking:** Provides a simple and clean `RollicSDK.TrackEvent("your_event_name")` API.
 -   **Robust Offline Persistence:** Events are saved to local device storage if the user is offline and are sent automatically when the connection is restored, ensuring no data is ever lost.
 -   **Network Optimization:** Events are intelligently batched and sent with an exponential backoff retry strategy to handle API errors or network issues efficiently without spamming the server.
--   **Extensible Architecture:** Built with modern software design patterns (DI, Adapters) to easily support new platforms or features in the future.
+-   **Extensible Architecture:** Built with modern software design patterns (DI,Strategy, Adapters) to easily support new platforms or features in the future.
 -   **Automated CI/CD Pipeline:**
     -   **Unit Tested:** A full suite of unit tests are run automatically on every push to the `main` branch, ensuring code quality and preventing regressions.
     -   **Automated Packaging:** The distributable `.unitypackage` is built automatically by a GitHub Action.
