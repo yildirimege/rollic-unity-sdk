@@ -48,7 +48,6 @@ This method keeps the SDK organized in your project's `Packages` folder and make
     ```
     *(To use a different version, simply change the `#v1.0.0` part of the URL to the desired version tag from the [Releases Page](https://github.com/yildirimege/rollic-unity-sdk/releases).)*
 
-    ![UPM Git URL Installation](https://user-images.githubusercontent.com/1090646/158942323-83244198-4c3e-42b7-873b-5544627198d2.png)
 
 ### Alternative: Install via `.unitypackage`
 
