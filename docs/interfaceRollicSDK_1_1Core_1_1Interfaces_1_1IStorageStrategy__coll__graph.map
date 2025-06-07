@@ -1,0 +1,3 @@
+<map id="RollicSDK.Core.Interfaces.IStorageStrategy" name="RollicSDK.Core.Interfaces.IStorageStrategy">
+<area shape="rect" id="Node000001" title="Interface for defining a data storage strategy. Implementations can include PlayerPrefs,..." alt="" coords="5,5,189,160"/>
+</map>

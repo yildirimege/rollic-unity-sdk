@@ -1,0 +1,9 @@
+<map id="RollicSDK.Core.Interfaces.IDeviceInfoProvider" name="RollicSDK.Core.Interfaces.IDeviceInfoProvider">
+<area shape="rect" id="Node000001" title="Interface for an adapter that provides platform&#45;specific device information. This allows the core SDK..." alt="" coords="224,5,419,100"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,148,200,243"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="239,110,176,150,173,146,236,105"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="224,148,419,243"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="324,114,324,148,319,148,319,114"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="443,148,651,243"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="409,105,474,146,471,150,406,110"/>
+</map>
