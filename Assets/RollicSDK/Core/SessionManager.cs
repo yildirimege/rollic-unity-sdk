@@ -38,7 +38,7 @@ namespace RollicSDK.Core
         /// </summary>
         public event Action OnSessionResumed;
 
-        private readonly IStorageStrategy storage;
+        internal readonly IStorageStrategy storage;
 
         /// <summary>
         /// Creates a new instance of SessionManager.
@@ -199,7 +199,7 @@ namespace RollicSDK.Core
         /// Internal data class used for serializing session state to JSON.
         /// </summary>
         [Serializable]
-        private class SessionData
+        internal class SessionData
         {
             /// <summary>Ticks for session start time (DateTime.Ticks).</summary>
             public long SessionStartTicks;
