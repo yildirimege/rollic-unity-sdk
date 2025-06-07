@@ -5,13 +5,14 @@ on:
     branches: [ main ]
   workflow_dispatch:
 
-# We still need this permission for the documentation deployment.
+# Grant permissions for the workflow to write to the gh-pages branch.
 permissions:
   contents: write
 
 jobs:
   # ===============================================================
-  # JOB 1: RUN UNIT TESTS (The Quality Gate)
+  # JOB 1: RUN UNIT TESTS
+  # This job runs first. If it fails, the entire workflow stops.
   # ===============================================================
   test:
     name: Run Unity Tests
@@ -24,12 +25,10 @@ jobs:
         uses: actions/cache@v4
         with:
           path: Library
-          key: Library-test-v3-${{ hashFiles('ProjectSettings/ProjectVersion.txt') }} # Incremented key to ensure a fresh cache
+          key: Library-test-v3-${{ hashFiles('ProjectSettings/ProjectVersion.txt') }}
           restore-keys: |
             Library-test-v3-
 
-      # This is the standard, official action for running tests.
-      # We are now using it in its simplest form.
       - name: Run Edit Mode Tests
         uses: game-ci/unity-test-runner@v4
         env:
@@ -37,16 +36,8 @@ jobs:
           UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
-          # The action will automatically read the version from your ProjectSettings.
-          # We no longer need to specify it.
-
-          # The action will automatically determine the correct Docker image.
-          # Now that your manifest.json is clean, this will succeed.
-
-          # We just need to tell it which tests to run.
           testMode: EditMode
 
-      # This step uploads the XML test results for inspection.
       - name: Upload Test Results
         uses: actions/upload-artifact@v4
         with:
@@ -55,16 +46,18 @@ jobs:
           if-no-files-found: 'ignore'
 
   # ===============================================================
-  # JOB 2: BUILD PACKAGE & DEPLOY DOCS (Runs only if 'test' succeeds)
+  # JOB 2: BUILD PACKAGE & DEPLOY DOCS
+  # This job only runs if the 'test' job succeeds.
   # ===============================================================
   build-and-deploy:
     name: Build Package & Deploy Docs
     runs-on: ubuntu-latest
-    needs: test # This job depends on the 'test' job succeeding.
+    needs: test # Creates the dependency on the 'test' job.
     steps:
-      # This part of the workflow has been working correctly. We will not change it.
       - name: Checkout repository
         uses: actions/checkout@v4
+
+      # --- Package Creation Steps ---
       - name: Generate meta file list
         run: find Assets/RollicSDK -name \*.meta > metaList.txt
       - name: Create Build Directory
@@ -79,14 +72,22 @@ jobs:
         with:
           name: RollicSDK-Package
           path: Build/RollicSDK.unitypackage
+
+      # --- Documentation Deployment Steps ---
       - name: Install Doxygen and Graphviz
         run: sudo apt-get update && sudo apt-get install -y doxygen graphviz
+
       - name: Generate Doxygen Documentation
         run: doxygen Doxyfile
-      - name: Add .nojekyll file
-        run: touch docs/.nojekyll
-      - name: Deploy Documentation to main branch
-        uses: stefanzweifel/git-auto-commit-action@v5
+
+      # This is the final, corrected deployment step.
+      # It deploys the contents of the 'docs' folder to a dedicated 'gh-pages' branch.
+      - name: Deploy Documentation to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
         with:
-          commit_message: "docs: Auto-generate documentation"
-          file_pattern: docs/
+          # This token is automatically provided by GitHub.
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          # This is the directory that Doxygen generates.
+          publish_dir: ./docs/
+          # This ensures old files from previous deployments are removed.
+          force_orphan: true
