@@ -1,0 +1,14 @@
+{
+  "name": "com.yildirimege.rollicsdk",
+  "version": "1.0.0",
+  "displayName": "Rollic SDK",
+  "description": "A simple yet robust SDK for the Rollic SDK Engineer case study, providing session and event tracking with offline persistence and network resilience.",
+  "unity": "2022.3",
+  "documentationUrl": "https://yildirimege.github.io/rollic-unity-sdk/",
+  "changelogUrl": "https://github.com/yildirimege/rollic-unity-sdk/releases",
+  "licensesUrl": "https://github.com/yildirimege/rollic-unity-sdk/blob/main/LICENSE",
+  "author": {
+    "name": "Ege Yildirim",
+    "url": "https://github.com/yildirimege"
+  }
+}
