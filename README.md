@@ -44,7 +44,7 @@ This method keeps the SDK organized in your project's `Packages` folder and make
 4.  Paste the following URL into the text box and click **Add**:
 
     ```
-    https://github.com/yildirimege/rollic-unity-sdk.git#v1.0.0
+    https://github.com/yildirimege/rollic-unity-sdk.git?path=/Assets/RollicSDK#v1.0.0
     ```
     *(To use a different version, simply change the `#v1.0.0` part of the URL to the desired version tag from the [Releases Page](https://github.com/yildirimege/rollic-unity-sdk/releases).)*
 
