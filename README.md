@@ -34,7 +34,16 @@ The entire project, from unit testing and package creation to documentation depl
 
 This SDK can be installed via the Unity Package Manager (UPM) using a Git URL, which is the recommended method. A traditional `.unitypackage` is also provided for fallback.
 
-### Recommended: Install via Unity Package Manager (UPM)
+
+
+
+### Recommended: Install via `.unitypackage` 
+
+1.  Navigate to the **[Releases Page](https://github.com/yildirimege/rollic-unity-sdk/releases)**.
+2.  Download the `RollicSDK.unitypackage` from the assets of the latest release.
+3.  Open your Unity project and import the package via the top menu: **Assets > Import Package > Custom Package...**.
+   
+### Alternative: Install via Unity Package Manager (UPM) (Has Dependency Errors since 3rd party dependencies hasn't been included with the package. But this method should be the recomended in production grade project)
 
 This method keeps the SDK organized in your project's `Packages` folder and makes version management easy.
 
@@ -47,15 +56,11 @@ This method keeps the SDK organized in your project's `Packages` folder and make
     https://github.com/yildirimege/rollic-unity-sdk.git?path=/Assets/RollicSDK#v1.0.0
     ```
     *(To use a different version, simply change the `#v1.0.0` part of the URL to the desired version tag from the [Releases Page](https://github.com/yildirimege/rollic-unity-sdk/releases).)*
+    *(Relative path to the SDK was given because the scene contains scene samples, which SDK should not include)
 
-
-### Alternative: Install via `.unitypackage`
-
-1.  Navigate to the **[Releases Page](https://github.com/yildirimege/rollic-unity-sdk/releases)**.
-2.  Download the `RollicSDK.unitypackage` from the assets of the latest release.
-3.  Open your Unity project and import the package via the top menu: **Assets > Import Package > Custom Package...**.
 
 ---
+
 
 ## Quick Start After Installation
 
@@ -97,3 +102,30 @@ This repository is a complete, working Unity project. To see a live demonstratio
 2.  Open the project in a compatible version of Unity (e.g., `2022.3.21f1`).
 3.  Open the scene at **`Assets/Sample/Scenes/SampleScene.unity`**.
 4.  Enter Play Mode to use the interactive test harness.
+
+
+## What Could Be Better? (Future Roadmap)
+
+Here are the key improvements I'd address in the future roadmap of the project
+
+#### 1. Decoupling Core Dependencies
+
+*   **The Challenge**: The SDK currently uses `Newtonsoft.Json` for  JSON serialization, since Unity's built-in `JsonUtility` does not support serializing complex types like Dictionaries. 
+*   **The Solution**:
+    *   **Short-Term**: Use assembly version defines (`#if NEWTONSOFT_JSON_AVAILABLE`) to allow the SDK to use a project's existing Newtonsoft package if present, and fall back to a more limited, internal JSON solution
+    *   **Long-Term**: Abstract the serializer behind an `IJsonSerializer` interface. Provide a default implementation using `JsonUtility` for simple cases and an optional, separate "Newtonsoft Support" package that developers can install to add the more powerful implementation.
+
+#### 2. Dedicated Package Repository
+
+*   **The Challenge**: The SDK is currently distributed from a repository that is also a complete Unity project. This is great for demonstration but not ideal for clean distribution.
+*   **The Solution**: The package source code should live in a dedicated, clean repository containing only the package files (not the `Assets`, `ProjectSettings`, etc.). This makes the package much lighter and easier for other developers to contribute to. For a company like Rollic, the package would ideally be hosted on a private, scoped registry (Like jenkins, teamcity) for secure and managed distribution to all internal teams.
+
+#### 3. Advanced Testing Suite
+
+*   **The Challenge**: The project includes suite for Editor-based unit tests, However, they cannot test runtime-specific behavior.
+*   **The Solution**: Implement a separate **Runtime/Integration Test Suite** using a dedicated test assembly (`.asmdef`). This would involve creating a test scene to run the SDK's `MonoBehaviour` components (`EventProcessor`) in a real play-mode environment.
+
+#### 4. Programmatic Configuration and DI
+
+*   **The Challenge**: Configuration is currently handled exclusively via a `ScriptableObject`.(RollicSDKConfig) This is user-friendly for designers and most developers but lacks flexibility for advanced use cases where settings might need to be determined at runtime.
+*   **The Solution**: Introduce a programmatic configuration API overload that uses the config object in constructor (e.g., `RollicSDK.Configure(config)`) as an alternative. For ultimate flexibility, the SDK's core initializers could be exposed to allow a developer to inject their own custom implementations of `INetworkManager` or `IStorageStrategy`, fully following the principles of Dependency Injection (DI) and making the SDK adaptable to any project's requirements
