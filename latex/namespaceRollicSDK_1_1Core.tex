@@ -1,0 +1,19 @@
+\doxysection{Rollic\+SDK.\+Core Namespace Reference}
+\hypertarget{namespaceRollicSDK_1_1Core}{}\label{namespaceRollicSDK_1_1Core}\index{RollicSDK.Core@{RollicSDK.Core}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classRollicSDK_1_1Core_1_1EventProcessor}{Event\+Processor}}
+\begin{DoxyCompactList}\small\item\em A Mono\+Behaviour responsible for processing the event queue in the background. It periodically batches events and sends them to the API, with retry logic. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classRollicSDK_1_1Core_1_1EventQueue}{Event\+Queue}}
+\begin{DoxyCompactList}\small\item\em Manages a persistent, thread-\/safe queue of events. \end{DoxyCompactList}\item 
+class {\bfseries Event\+Tracker}
+\begin{DoxyCompactList}\small\item\em Concrete implementation of IEvent\+Tracker. It uses the Event\+Data factory to create a complete event object and passes it to the persistent queue. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classRollicSDK_1_1Core_1_1NetworkManager}{Network\+Manager}}
+\begin{DoxyCompactList}\small\item\em Concrete implementation of INetwork\+Manager using Http\+Client. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classRollicSDK_1_1Core_1_1RollicSDKConfig}{Rollic\+SDKConfig}}
+\begin{DoxyCompactList}\small\item\em Scriptable\+Object for configuring the Rollic SDK. To create an instance, right-\/click in the Project window and select \textquotesingle{}Create/\+Rollic SDK/\+Configuration\textquotesingle{}. \end{DoxyCompactList}\item 
+class {\bfseries Rollic\+SDKManager}
+\begin{DoxyCompactList}\small\item\em Internal Mono\+Behaviour that automatically manages the SDK\textquotesingle{}s lifecycle. It ensures the SDK is initialized on game start and handles application pause/resume events. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classRollicSDK_1_1Core_1_1SessionManager}{Session\+Manager}}
+\begin{DoxyCompactList}\small\item\em Manages user session timing with support for start, end, pause, and resume. Persists session state using the provided storage strategy to survive app restarts. Provides events for session lifecycle changes. \end{DoxyCompactList}\end{DoxyCompactItemize}

@@ -1,0 +1,5 @@
+<map id="RollicSDK.Core.SessionManager" name="RollicSDK.Core.SessionManager">
+<area shape="rect" id="Node000001" title="Manages user session timing with support for start, end, pause, and resume. Persists session state us..." alt="" coords="5,159,228,353"/>
+<area shape="rect" id="Node000002" href="$interfaceRollicSDK_1_1Core_1_1Interfaces_1_1ISessionManager.html" title="Interface for managing user session tracking." alt="" coords="9,5,225,111"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="119,125,119,158,114,158,114,125"/>
+</map>

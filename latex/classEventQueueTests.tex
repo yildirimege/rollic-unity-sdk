@@ -1,0 +1,45 @@
+\doxysection{Event\+Queue\+Tests Class Reference}
+\hypertarget{classEventQueueTests}{}\label{classEventQueueTests}\index{EventQueueTests@{EventQueueTests}}
+
+
+Contains unit tests for the Event\+Queue class. This suite verifies the core logic of queuing, batching, re-\/queuing, and persistence to ensure no event data is ever lost.  
+
+
+
+
+Collaboration diagram for Event\+Queue\+Tests\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=290pt]{classEventQueueTests__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classEventQueueTests_a72001468f6d0e76ab2bc20335cf349b3}\label{classEventQueueTests_a72001468f6d0e76ab2bc20335cf349b3} 
+void {\bfseries Setup} ()
+\begin{DoxyCompactList}\small\item\em This method runs before each test, ensuring a clean and isolated test environment with fresh instances of the queue and its dependencies. \end{DoxyCompactList}\item 
+\Hypertarget{classEventQueueTests_ae33f7b22e423da89d21df2a076144e3e}\label{classEventQueueTests_ae33f7b22e423da89d21df2a076144e3e} 
+void {\bfseries Enqueue\+\_\+\+When\+Called\+\_\+\+Increases\+Queue\+Count} ()
+\begin{DoxyCompactList}\small\item\em Verifies that enqueuing a single event increases the total count of the queue by one. \end{DoxyCompactList}\item 
+\Hypertarget{classEventQueueTests_ab18db8faebc02ff1a7005491160ae835}\label{classEventQueueTests_ab18db8faebc02ff1a7005491160ae835} 
+void {\bfseries Dequeue\+Batch\+\_\+\+When\+Queue\+Has\+Enough\+Items\+\_\+\+Returns\+Correct\+Batch\+And\+Updates\+Count} ()
+\begin{DoxyCompactList}\small\item\em Verifies that dequeuing a batch returns the correct number of items and correctly reduces the remaining count in the queue when there are enough items available. \end{DoxyCompactList}\item 
+\Hypertarget{classEventQueueTests_a5108897b99d1b2593babe7a545bbd2be}\label{classEventQueueTests_a5108897b99d1b2593babe7a545bbd2be} 
+void {\bfseries Dequeue\+Batch\+\_\+\+When\+Queue\+Has\+Fewer\+Items\+\_\+\+Returns\+All\+Items} ()
+\begin{DoxyCompactList}\small\item\em Verifies that attempting to dequeue a batch larger than the number of items in the queue returns all available items and leaves the queue empty. \end{DoxyCompactList}\item 
+\Hypertarget{classEventQueueTests_ad37221e5e818117e5b3898883c0e527e}\label{classEventQueueTests_ad37221e5e818117e5b3898883c0e527e} 
+void {\bfseries Requeue\+Batch\+\_\+\+After\+Failure\+\_\+\+Adds\+Items\+To\+Front\+Of\+Queue} ()
+\begin{DoxyCompactList}\small\item\em Verifies that a batch of events that failed to send can be added back to the front of the queue, preserving the original order of events. \end{DoxyCompactList}\item 
+\Hypertarget{classEventQueueTests_ac47bb3688145b42a6b32e411e0421cd2}\label{classEventQueueTests_ac47bb3688145b42a6b32e411e0421cd2} 
+void {\bfseries Constructor\+\_\+\+When\+Storage\+Has\+Data\+\_\+\+Loads\+Existing\+Queue} ()
+\begin{DoxyCompactList}\small\item\em Verifies that a new Event\+Queue instance correctly loads and deserializes pre-\/existing event data from its storage strategy upon creation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Contains unit tests for the Event\+Queue class. This suite verifies the core logic of queuing, batching, re-\/queuing, and persistence to ensure no event data is ever lost. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Assets/\+Rollic\+SDK/\+Tests/\+Editor/Event\+Queue\+Tests.\+cs\end{DoxyCompactItemize}

@@ -1,0 +1,81 @@
+\doxysection{Rollic\+SDK.\+Data.\+Event\+Data Class Reference}
+\hypertarget{classRollicSDK_1_1Data_1_1EventData}{}\label{classRollicSDK_1_1Data_1_1EventData}\index{RollicSDK.Data.EventData@{RollicSDK.Data.EventData}}
+
+
+Represents the complete, serializable payload for a single tracked event. This class combines event-\/specific data, session data, and device context.  
+
+
+
+
+Collaboration diagram for Rollic\+SDK.\+Data.\+Event\+Data\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=296pt]{classRollicSDK_1_1Data_1_1EventData__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{classRollicSDK_1_1Data_1_1EventData}{Event\+Data}} \mbox{\hyperlink{classRollicSDK_1_1Data_1_1EventData_a7030b36c3c712b8841b09d1b28e8110b}{Create}} (string event\+Name, double session\+Duration, \mbox{\hyperlink{interfaceRollicSDK_1_1Core_1_1Interfaces_1_1IDeviceInfoProvider}{Core.\+Interfaces.\+IDevice\+Info\+Provider}} device\+Info\+Provider)
+\begin{DoxyCompactList}\small\item\em Factory method to create a new, fully populated Event\+Data object. This is the only way to create an instance, ensuring all data is present. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classRollicSDK_1_1Data_1_1EventData_a4bb2999695b0112cdc7f428be9c1c283}\label{classRollicSDK_1_1Data_1_1EventData_a4bb2999695b0112cdc7f428be9c1c283} 
+string {\bfseries Event\+Name}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+\Hypertarget{classRollicSDK_1_1Data_1_1EventData_ab16db7b5fabef35cb918a60134e3bcf0}\label{classRollicSDK_1_1Data_1_1EventData_ab16db7b5fabef35cb918a60134e3bcf0} 
+string {\bfseries Event\+Id}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+\Hypertarget{classRollicSDK_1_1Data_1_1EventData_ac6004a5f16ac635eb87bb332d0180034}\label{classRollicSDK_1_1Data_1_1EventData_ac6004a5f16ac635eb87bb332d0180034} 
+long {\bfseries Timestamp\+Utc}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+\Hypertarget{classRollicSDK_1_1Data_1_1EventData_aa89e59c437165cd3b97457b7beedea38}\label{classRollicSDK_1_1Data_1_1EventData_aa89e59c437165cd3b97457b7beedea38} 
+long {\bfseries Session\+Time}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+\Hypertarget{classRollicSDK_1_1Data_1_1EventData_a2c1cd39c982c7ed83294feaf91e5719e}\label{classRollicSDK_1_1Data_1_1EventData_a2c1cd39c982c7ed83294feaf91e5719e} 
+string {\bfseries Platform}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+\Hypertarget{classRollicSDK_1_1Data_1_1EventData_a5c12bf49e0f48d2f64b2d0c0183825d7}\label{classRollicSDK_1_1Data_1_1EventData_a5c12bf49e0f48d2f64b2d0c0183825d7} 
+string {\bfseries Os\+Version}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+\Hypertarget{classRollicSDK_1_1Data_1_1EventData_a7b9bea622501b5054b8d4ddf4e509e6c}\label{classRollicSDK_1_1Data_1_1EventData_a7b9bea622501b5054b8d4ddf4e509e6c} 
+string {\bfseries Device\+Model}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+\Hypertarget{classRollicSDK_1_1Data_1_1EventData_aee9a15525dbc8d27db147434de10f7a9}\label{classRollicSDK_1_1Data_1_1EventData_aee9a15525dbc8d27db147434de10f7a9} 
+string {\bfseries Device\+Id}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents the complete, serializable payload for a single tracked event. This class combines event-\/specific data, session data, and device context. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classRollicSDK_1_1Data_1_1EventData_a7030b36c3c712b8841b09d1b28e8110b}\label{classRollicSDK_1_1Data_1_1EventData_a7030b36c3c712b8841b09d1b28e8110b} 
+\index{RollicSDK.Data.EventData@{RollicSDK.Data.EventData}!Create@{Create}}
+\index{Create@{Create}!RollicSDK.Data.EventData@{RollicSDK.Data.EventData}}
+\doxysubsubsection{\texorpdfstring{Create()}{Create()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{classRollicSDK_1_1Data_1_1EventData}{Event\+Data}} Rollic\+SDK.\+Data.\+Event\+Data.\+Create (\begin{DoxyParamCaption}\item[{string}]{event\+Name,  }\item[{double}]{session\+Duration,  }\item[{\mbox{\hyperlink{interfaceRollicSDK_1_1Core_1_1Interfaces_1_1IDeviceInfoProvider}{Core\+::\+Interfaces\+::\+IDevice\+Info\+Provider}}}]{device\+Info\+Provider }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Factory method to create a new, fully populated Event\+Data object. This is the only way to create an instance, ensuring all data is present. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em event\+Name} & The name of the event being tracked.\\
+\hline
+{\em session\+Duration} & Current duration of the user session in seconds.\\
+\hline
+{\em device\+Info\+Provider} & The platform-\/specific adapter for device info.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A new, complete Event\+Data object.
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Assets/\+Rollic\+SDK/\+Events/Event\+Data.\+cs\end{DoxyCompactItemize}

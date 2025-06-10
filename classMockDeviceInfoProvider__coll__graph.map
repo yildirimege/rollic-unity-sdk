@@ -1,0 +1,5 @@
+<map id="MockDeviceInfoProvider" name="MockDeviceInfoProvider">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,133,200,228"/>
+<area shape="rect" id="Node000002" href="$interfaceRollicSDK_1_1Core_1_1Interfaces_1_1IDeviceInfoProvider.html" title="Interface for an adapter that provides platform&#45;specific device information. This allows the core SDK..." alt="" coords="5,5,200,85"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="105,99,105,133,100,133,100,99"/>
+</map>

@@ -1,0 +1,65 @@
+\doxysection{Rollic\+SDK.\+Core.\+Interfaces.\+INetwork\+Manager Interface Reference}
+\hypertarget{interfaceRollicSDK_1_1Core_1_1Interfaces_1_1INetworkManager}{}\label{interfaceRollicSDK_1_1Core_1_1Interfaces_1_1INetworkManager}\index{RollicSDK.Core.Interfaces.INetworkManager@{RollicSDK.Core.Interfaces.INetworkManager}}
+
+
+Interface defining the contract for network operations.  
+
+
+
+
+Inheritance diagram for Rollic\+SDK.\+Core.\+Interfaces.\+INetwork\+Manager\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=267pt]{interfaceRollicSDK_1_1Core_1_1Interfaces_1_1INetworkManager__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Rollic\+SDK.\+Core.\+Interfaces.\+INetwork\+Manager\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=245pt]{interfaceRollicSDK_1_1Core_1_1Interfaces_1_1INetworkManager__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+System.\+Threading.\+Tasks.\+Task$<$ bool $>$ \mbox{\hyperlink{interfaceRollicSDK_1_1Core_1_1Interfaces_1_1INetworkManager_aeaedef5a0a53c8c28b9b2614a5434a6c}{Post\+Async}} (string url, string json\+Payload)
+\begin{DoxyCompactList}\small\item\em Sends a POST request asynchronously to the given URL with the provided JSON payload. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Interface defining the contract for network operations. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{interfaceRollicSDK_1_1Core_1_1Interfaces_1_1INetworkManager_aeaedef5a0a53c8c28b9b2614a5434a6c}\label{interfaceRollicSDK_1_1Core_1_1Interfaces_1_1INetworkManager_aeaedef5a0a53c8c28b9b2614a5434a6c} 
+\index{RollicSDK.Core.Interfaces.INetworkManager@{RollicSDK.Core.Interfaces.INetworkManager}!PostAsync@{PostAsync}}
+\index{PostAsync@{PostAsync}!RollicSDK.Core.Interfaces.INetworkManager@{RollicSDK.Core.Interfaces.INetworkManager}}
+\doxysubsubsection{\texorpdfstring{PostAsync()}{PostAsync()}}
+{\footnotesize\ttfamily System.\+Threading.\+Tasks.\+Task$<$ bool $>$ Rollic\+SDK.\+Core.\+Interfaces.\+INetwork\+Manager.\+Post\+Async (\begin{DoxyParamCaption}\item[{string}]{url,  }\item[{string}]{json\+Payload }\end{DoxyParamCaption})}
+
+
+
+Sends a POST request asynchronously to the given URL with the provided JSON payload. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em url} & The target API endpoint.\\
+\hline
+{\em json\+Payload} & The JSON string to send in the body.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the request succeeded, false otherwise.
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classRollicSDK_1_1Core_1_1NetworkManager_ad1439e109cadfeae85fe44ff48c1e3a7}{Rollic\+SDK.\+Core.\+Network\+Manager}}.
+
+
+
+The documentation for this interface was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Assets/\+Rollic\+SDK/\+Core/\+Interfaces/INetwork\+Manager.\+cs\end{DoxyCompactItemize}
